@@ -1,0 +1,21 @@
+
+<p><a routerLink="/admin/product/new" class="btn btn-primary">New Item</a></p>
+<p><input #searchQuery (keyup)="filter(searchQuery.value)" type="text" class="form-control" placeholder="search..."></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of filteredProducts">
+            <td><img class="rounded-circle" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png"/>{{ p.name }}</td>
+            <td>{{ p.price }}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', p.id]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

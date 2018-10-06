@@ -1,0 +1,32 @@
+<h1>Shopping Cart</h1>
+<ng-container *ngIf="cartItems">
+  <p>You have {{totalCount}} items in your cart!</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of cartItems">
+        <td><div class="thumbnail" [style.backgroundImage]="'url(https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png)'" ></div></td>
+        <td>{{c.product.name}}</td>
+        <td>{{c.count}}</td>
+        <td>{{(c.product.price * c.count)|currency:'INR'}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>{{totalPrice | currency:'INR'}}</th>
+      </tr>
+    </tfoot>
+  </table>  
+  <a *ngIf="cartItems.length" class="btn btn-primary btn-sm" routerLink="/checkout">Checkout</a>
+  <button *ngIf="cartItems.length" (click)="clearCart()" class="btn btn-danger btn-sm">Clear Shopping Cart</button>
+</ng-container>

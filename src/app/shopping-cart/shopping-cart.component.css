@@ -1,0 +1,7 @@
+.thumbnail{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-size: cover;
+    /*background-image: url('https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png');*/
+}
