@@ -1,0 +1,67 @@
+<div class="container blogs">
+  <div class="row justify-content-around">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Orders</h5>
+          <div class="row">
+            <div class="col-md-4">
+              <mat-icon class="dashboard" matBadgeColor="warn">shopping_cart</mat-icon>
+            </div>
+            <div class="col-md-8 text-right">
+              <h3 class="card-text">20</h3>
+              <p>Orders</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Items</h5>
+          <div class="row">
+            <div class="col-md-4">
+              <mat-icon class="dashboard" matBadgeColor="warn">shopping_cart</mat-icon>
+            </div>
+            <div class="col-md-8 text-right">
+              <h3 class="card-text">20</h3>
+              <p>Items</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Users</h5>
+          <div class="row">
+            <div class="col-md-4">
+              <mat-icon class="dashboard" matBadgeColor="warn">sentiment_very_satisfied</mat-icon>
+            </div>
+            <div class="col-md-8 text-right">
+              <h3 class="card-text">{{val}}</h3>
+              <p>Users</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-around mb-1">
+    <div class="col-md-6">
+      <label>Progress 1</label>
+      <mat-progress-bar mode="determinate" [value]="val"></mat-progress-bar>
+      <label>Progress 2</label>
+      <mat-progress-bar mode="determinate" [value]="val"></mat-progress-bar>
+      <label>Progress 3</label>
+      <mat-progress-bar mode="determinate" [value]="val"></mat-progress-bar>
+      <label>Progress 4</label>
+      <mat-progress-bar mode="determinate" [value]="val" color="green"></mat-progress-bar>
+    </div>
+    <div class="col-md-4">
+      <canvas #canvas>{{ myChart }}</canvas>
+    </div>
+  </div>
+</div>

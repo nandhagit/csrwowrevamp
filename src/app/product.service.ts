@@ -28,4 +28,8 @@ export class ProductService {
   deleteProduct(id):Observable<any>{
     return this.http.delete("http://localhost:8080/products/"+id);
   }
+
+  minMaxPrice():Observable<any>{
+    return this.http.get("http://localhost:8080/wow/minAndMax");
+  }
 }

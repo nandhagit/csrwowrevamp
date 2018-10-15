@@ -17,6 +17,8 @@ export class ProductFormComponent implements OnInit {
 
   id;
 
+  subtypes;
+
   constructor(private categoryService: CategoryService,
     private productService: ProductService,
     private router: Router,
@@ -29,6 +31,13 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  onChange(val) {
+    console.log(val)
+    this.categoryService.getSubTypes(val).subscribe(result => {
+      this.subtypes = result;
+    });
+  }
+
   ngOnInit() {
     this.categoryService.getCategories().subscribe(category => {
       this.categories = category;
@@ -36,6 +45,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   save(item) {
+    console.log(item)
     if (this.id) {
       this.productService.updateProduct(this.id, this.product).subscribe(data => {
 

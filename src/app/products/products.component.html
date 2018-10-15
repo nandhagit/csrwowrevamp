@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-3">
-    <product-filter [category]="category"></product-filter>
+    <product-filter [categoryid]="categoryId" [type]="subType" [category]="category"></product-filter>
+    <price-filter [minPrice]="minPrice" [maxPrice]="maxPrice"></price-filter>
   </div>
   <div class="col">
     <div class="row">

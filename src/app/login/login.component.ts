@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import {
   FormGroup,
   AbstractControl,
@@ -8,7 +8,7 @@ import {
   Validators,
   NgForm
 } from "@angular/forms";
-import {AuthService} from '../auth.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: "app-login",
@@ -17,17 +17,27 @@ import {AuthService} from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm;
-  email;
+  username;
   password;
+  invalidLogin: boolean = false;
   constructor(
     private http: HttpClient,
     private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
   signin(form: NgForm) {
-    this.authService.authenticate(form);
+    this.authService.authenticate(form).subscribe(response => {
+      if (response) {
+        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/']);
+      } else {
+        this.invalidLogin = true;
+      }
+    })
     return false;
   }
 }

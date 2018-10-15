@@ -32,15 +32,24 @@ export class ShoppingCartService {
     return this.http.get("http://localhost:8080/wow/getcartitems", {params:{cart: cartId}});
   }
 
-  async addToCart(product: Product) {
+  async addToCart(product: Product):Promise<Observable<any>> {
     let cartId = await this.getOrCreateCartId();
-    let item$ = this.getItem(product.id, cartId)
-      item$.pipe(take(1)).subscribe(item =>{
-      })
+    let item$ = this.getItem(product.id, cartId);
+      return item$;
+  }
+
+  async removeFromCart(product: Product):Promise<Observable<any>> {
+    let cartId = await this.getOrCreateCartId();
+    let item$ = this.removeItem(product.id, cartId);
+      return item$;
   }
 
   private getItem(productId: number, cartId: string) {
     return this.http.post("http://localhost:8080/wow/addtocart", { cart: cartId, product: productId });
+  }
+
+  private removeItem(productId: number, cartId: string) {
+    return this.http.post("http://localhost:8080/wow/removefromcart", { cart: cartId, product: productId });
   }
 
   async clearCartItems(){

@@ -7,36 +7,28 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'wow-header',
   templateUrl: './wow-navbar.component.html',
   styleUrls: ['./wow-navbar.component.css']
 })
-export class WowNavbarComponent implements OnInit {
+export class WowNavbarComponent {
 
   shoppingCartItemCount: number;
 
+  categories$;
 
-  constructor(private cartService: ShoppingCartService, private http: HttpClient, private router: Router, private authService: AuthService) { 
+  constructor(private categoryService: CategoryService, 
+    private cartService: ShoppingCartService, private authService: AuthService) { 
+    this.categories$ = this.categoryService.getCategories();
+    console.log("in cons")
+    let cart$ = this.cartService.getCart()
   }
 
-  async ngOnInit() {
-  }
-
-  logout() {
-    this.http.post('http://localhost:8080/logout', {}).pipe(
-      finalize(() => {
-        this.router.navigateByUrl('/home');
-      })).subscribe();
-  }
-
-  authenticated(){
-    return this.authService.loggedIn();
-  }
-
-  cartCount(){
-    //return this.cartService.getCart()
+   getCartCount(){
+    console.log("here");
   }
 
 }

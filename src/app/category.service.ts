@@ -12,4 +12,9 @@ export class CategoryService {
   getCategories(): Observable<any> {
     return this.http.get("http://localhost:8080/wow/getcategory")
   }
+
+  getSubTypes(category): Observable<any> {
+    return this.http.get("http://localhost:8080/wow/getSubFilters", {params:{category: category}});
+  }
+  
 }

@@ -1,31 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light shadow p-3 mb-5 sticky-top">
   <a class="navbar-brand" href="/">Women's Organization of Waze</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
+-->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/mycart">Shopping Cart<span class="badge badge-success badge-pill">{{shoppingCartItemCount}}</span></a>
+        <a class="nav-link" routerLink="/mycart"><mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon></a>
       </li>
-      <li class="nav-item" *ngIf="!authenticated()">
+      <li *ngIf="!authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/products">Products</a>
-      </li>
       <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Products
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a *ngFor="let c of categories$ | async" class="dropdown-item" routerLink="/products" [queryParams]="{category: c.name, id:c.id}">{{c.name}}</a>
+          </div>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/aboutus">About Us</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Nandhakumar
+          {{authService.currentUser.sub}}
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/admin/products">Manage Items</a>
-          <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+          <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/products">Manage Items</a>
+          <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+          <a class="dropdown-item" routerLink="/admin/orders">My Orders</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()">Log out</a>
+          <a *ngIf="authService.isLoggedIn()" class="dropdown-item" (click)="authService.logout()" routerLink="/products">Log out</a>
         </div>
       </li>
     </ul>
