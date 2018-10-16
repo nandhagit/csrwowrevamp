@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ShoppingCartService } from "../shopping-cart.service";
+import { ShoppingCartService } from "../services/shopping-cart.service";
 
 @Component({
   selector: "product-card",
@@ -20,15 +20,17 @@ export class ProductCardComponent implements OnInit {
       (await this.getCartItems()).subscribe(result => {
         this.shoppingCart = result;
         this.getQuantity()
+        this.setCount()
       })
     });
   }
 
-  async removeFromCart(){
+  async removeFromCart() {
     (await this.cartService.removeFromCart(this.product)).subscribe(async result => {
       (await this.getCartItems()).subscribe(result => {
         this.shoppingCart = result;
         this.getQuantity()
+        this.setCount()
       })
     });
   }
@@ -49,6 +51,14 @@ export class ProductCardComponent implements OnInit {
       this.shoppingCart = result;
       this.getQuantity()
     })
+  }
+
+  setCount() {
+    let totalCount = 0;
+    for (let c of this.shoppingCart) {
+      totalCount += c.count;
+    }
+    localStorage.setItem('cartCount', totalCount.toString())
   }
 
 }

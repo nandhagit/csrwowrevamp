@@ -14,13 +14,13 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { HomeComponent } from './home/home.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CategoryService } from './category.service';
+import { CategoryService } from './services/category.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from './product.service';
+import { ProductService } from './services/product.service';
 import { CustomFormsModule } from 'ng2-validation';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { ShoppingCartService } from './shopping-cart.service';
+import { ShoppingCartService } from './services/shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { CheckoutComponent } from './payment/checkout/checkout.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
@@ -28,12 +28,12 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { RatingComponent } from './rating/rating.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { BlogComponent } from './blog/blog.component';
 import { MembersComponent } from './members/members.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from './auth-guard.service';
-import { AdminAuthGuard } from './admin-auth-guard.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AboutUsComponent } from './about-us/about-us.component';
 

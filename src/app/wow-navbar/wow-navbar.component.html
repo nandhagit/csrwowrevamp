@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/mycart"><mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon></a>
+        <a class="nav-link" routerLink="/mycart"><mat-icon [matBadge]="getCartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a>
       </li>
       <li *ngIf="!authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="/login">Login</a>
