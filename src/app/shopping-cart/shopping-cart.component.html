@@ -6,16 +6,16 @@
       <tr>
         <th></th>
         <th>Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
+        <th class="text-center" style="width: 230px">Quantity</th>
+        <th class="text-right" style="width: 200px">Price</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let c of cartItems">
         <td><div class="thumbnail" [style.backgroundImage]="'url(https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png)'" ></div></td>
         <td>{{c.product.name}}</td>
-        <td>{{c.count}}</td>
-        <td>{{(c.product.price * c.count)|currency:'INR'}}</td>
+        <td><product-quantity [product]="c.product"></product-quantity></td>
+        <td class="text-right">{{(c.product.price * c.count)|currency:'INR'}}</td>
       </tr>
     </tbody>
     <tfoot>
@@ -23,7 +23,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <th>{{totalPrice | currency:'INR'}}</th>
+        <th class="text-right">{{totalPrice | currency:'INR'}}</th>
       </tr>
     </tfoot>
   </table>  

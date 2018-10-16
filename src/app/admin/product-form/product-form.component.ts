@@ -27,12 +27,11 @@ export class ProductFormComponent implements OnInit {
     if (this.id) {
       this.productService.getProduct(this.id).pipe(take(1)).subscribe(data => {
         this.product = data;
-      })
+      });
     }
   }
 
   onChange(val) {
-    console.log(val)
     this.categoryService.getSubTypes(val).subscribe(result => {
       this.subtypes = result;
     });
@@ -45,7 +44,6 @@ export class ProductFormComponent implements OnInit {
   }
 
   save(item) {
-    console.log(item)
     if (this.id) {
       this.productService.updateProduct(this.id, this.product).subscribe(data => {
 
@@ -62,8 +60,7 @@ export class ProductFormComponent implements OnInit {
     if (!confirm("Are you sure?")) return;
     this.productService.deleteProduct(this.id).subscribe(data => {
 
-    })
+    });
     this.router.navigate(['/admin/products']);
   }
-
 }

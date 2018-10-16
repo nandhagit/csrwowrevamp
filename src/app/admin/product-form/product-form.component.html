@@ -48,7 +48,7 @@
           required>
           <option *ngFor="let s of subtypes" [value]="s.id">{{s.subType}}</option>
         </select>
-        <div class="alert alert-danger" *ngIf="type.touched && type.errors?.required">Category is required.</div>
+        <div class="alert alert-danger" *ngIf="type.touched && type.errors?.required">Sub-Category is required.</div>
       </div>
       <div class="form-group">
         <label for="imgUrl">Image Url</label>

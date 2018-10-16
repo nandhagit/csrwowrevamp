@@ -38,7 +38,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AboutUsComponent } from './about-us/about-us.component';
 
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -86,7 +85,6 @@ export function tokenGetter() {
     FormsModule,
     CustomFormsModule,
     MatTabsModule,
-    MatToolbarModule,
     MatIconModule,
     MatBadgeModule,
     MatProgressBarModule,

@@ -1,25 +1,12 @@
 <div *ngIf="product.name" class="card">
-  <a [routerLink]="['/details', product.id]"><img class="card-img-top" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png" alt="item"></a>
+  <a [routerLink]="['/details', product.id]"><img class="card-img-top" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png"
+      alt="item"></a>
   <div class="card-body">
     <h5 class="card-title">{{ product.name }}</h5>
     <p class="card-text">{{ product.price | currency:'INR' }}</p>
 
   </div>
   <div class="card-footer" *ngIf="showActions">
-    <button *ngIf="count===0; else updateQuantity" class="btn btn-success btn-block" (click)="addToCart()">Add
-      to cart</button>
-    <ng-template #updateQuantity>
-      <div class="row no-gutters">
-        <div class="col-2">
-          <button class="btn btn-block btn-secondary" (click)="removeFromCart()">-</button>
-        </div>
-        <div class="col text-center">
-          {{count}} in cart
-        </div>
-        <div class="col-2">
-          <button class="btn btn-block btn-secondary" (click)="addToCart()">+</button>
-        </div>
-      </div>
-    </ng-template>
+    <product-quantity [product]="product" [showAdd]="true"></product-quantity>
   </div>
 </div>

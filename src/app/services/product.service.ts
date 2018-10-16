@@ -10,7 +10,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   saveProduct(product): Observable<any>{
-    return this.http.post("http://localhost:8080/products", product);
+    return this.http.post("http://localhost:8080/wow/saveproduct", product);
   }
 
   getProducts(): Observable<any> {

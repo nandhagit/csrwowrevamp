@@ -6,31 +6,61 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './product-quantity.component.html',
   styleUrls: ['./product-quantity.component.css']
 })
-export class ProductQuantityComponent {
+export class ProductQuantityComponent implements OnInit{
 
-  
   @Input("product") product;
+  @Input("showAdd") showAdd;
   shoppingCart;
+  count;
 
-  constructor(private cartService: ShoppingCartService) { 
+  constructor(private cartService: ShoppingCartService) {
     this.getCartItems();
   }
 
-  addToCart() {
-    this.cartService.addToCart(this.product);
-    this.getCartItems();
+  async addToCart() {
+    (await this.cartService.addToCart(this.product)).subscribe(async result => {
+      (await this.getCartItems()).subscribe(result => {
+        this.shoppingCart = result;
+        this.getQuantity();
+        this.setCount();
+      });
+    });
+  }
+
+  async removeFromCart() {
+    (await this.cartService.removeFromCart(this.product)).subscribe(async result => {
+      (await this.getCartItems()).subscribe(result => {
+        this.shoppingCart = result;
+        this.getQuantity();
+        this.setCount();
+      });
+    });
   }
 
   getQuantity() {
-    if (!this.shoppingCart) return 0;
+    if (!this.shoppingCart) { this.count = 0; };
     let item = this.shoppingCart.find(item => item.product.id === this.product.id)
-    return item ? item.count : 0;
+    this.count = item ? item.count : 0;
   }
 
   async getCartItems() {
-    (await this.cartService.getCart()).subscribe(cart=>{
-      this.shoppingCart = cart;
-    })
+    let cart$ = await this.cartService.getCart();
+    return cart$;
+  }
+
+  setCount() {
+    let totalCount = 0;
+    for (let c of this.shoppingCart) {
+      totalCount += c.count;
+    }
+    localStorage.setItem('cartCount', totalCount.toString())
+  }
+
+  async ngOnInit() {
+    (await this.getCartItems()).subscribe(result => {
+      this.shoppingCart = result;
+      this.getQuantity();
+    });
   }
 
 
