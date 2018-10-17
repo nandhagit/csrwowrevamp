@@ -19,7 +19,7 @@ export class AuthService {
   authenticate(credentials): Observable<any> {
     console.log(credentials);
     return this.http.post(
-      "http://localhost:8080/auth",
+      "/auth",
       credentials
     ).pipe(map(response => {
       let result: any = response

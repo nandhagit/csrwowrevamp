@@ -1,8 +1,8 @@
 
 <p><a routerLink="/admin/product/new" class="btn btn-primary">New Item</a></p>
 <p><input #searchQuery (keyup)="filter(searchQuery.value)" type="text" class="form-control" placeholder="search..."></p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>Name</th>
             <th>Price</th>
@@ -19,3 +19,4 @@
         </tr>
     </tbody>
 </table>
+<mat-progress-spinner *ngIf="loading" class="progress-spinner" color="warn" mode="indeterminate" diameter="60"></mat-progress-spinner>

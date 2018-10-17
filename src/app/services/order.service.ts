@@ -9,7 +9,11 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(): Observable<any>{
-    return this.http.get("http://localhost:8080/payment/orders");
+  getAllOrders(): Observable<any> {
+    return this.http.get("/payment/admin/orders");
+  }
+
+  getMyOrders(): Observable<any> {
+    return this.http.get("/payment/orders");
   }
 }

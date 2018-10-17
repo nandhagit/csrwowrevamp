@@ -12,7 +12,6 @@ export class ShoppingCartComponent implements OnInit {
 
   cartItems: CartItem[];
   totalPrice = 0;
-  totalCount = 0;
 
   constructor(private cartService: ShoppingCartService) { }
 
@@ -22,15 +21,18 @@ export class ShoppingCartComponent implements OnInit {
       this.cartItems = cartItems;
       for (let c of this.cartItems) {
         this.totalPrice += (c.count * c.product.price);
-        this.totalCount += c.count;
       }
-    })
+    });
+  }
+
+  getCartCount() {
+    return localStorage.getItem('cartCount');
   }
 
   async clearCart() {
     (await this.cartService.clearCartItems()).subscribe(() => {
-      localStorage.removeItem("cartId")
-      this.ngOnInit()
+      localStorage.removeItem("cartId");
+     // this.ngOnInit()
     })
   }
 

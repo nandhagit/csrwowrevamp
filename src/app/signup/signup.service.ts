@@ -12,7 +12,7 @@ export class SignupService {
 
   saveUser(user: any): Observable<any>{
     console.log(user)
-    return this.http.post("http://localhost:8080/wow/saveuser", user);
+    return this.http.post("/wow/saveuser", user);
   }
 
 }

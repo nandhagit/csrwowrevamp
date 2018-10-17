@@ -33,7 +33,7 @@
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/products">Manage Items</a>
           <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
-          <a class="dropdown-item" routerLink="/admin/orders">My Orders</a>
+          <a class="dropdown-item" routerLink="/myorders">My Orders</a>
           <div class="dropdown-divider"></div>
           <a *ngIf="authService.isLoggedIn()" class="dropdown-item" (click)="authService.logout()" routerLink="/products">Log out</a>
         </div>

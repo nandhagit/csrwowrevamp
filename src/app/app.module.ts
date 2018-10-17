@@ -43,6 +43,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSliderModule} from '@angular/material/slider';
 import { PriceFilterComponent } from './price-filter/price-filter.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 import { Ng5SliderModule } from 'ng5-slider';
 
@@ -90,6 +92,7 @@ export function tokenGetter() {
     MatProgressBarModule,
     MatSliderModule,
     Ng5SliderModule,
+    MatProgressSpinnerModule,
     RouterModule.forRoot([{
       path: '',
       component: HomeComponent
@@ -145,12 +148,18 @@ export function tokenGetter() {
     }, {
       path: 'aboutus',
       component: AboutUsComponent
+    }, {
+      path: 'myorders',
+      component: MyOrdersComponent
+    }, {
+      path: 'user/:id',
+      component: AboutUsComponent
     }]),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost:8080'],
-        blacklistedRoutes: ['localhost:8080/auth/']
+        blacklistedRoutes: ['/auth/']
       }
     })
   ],

@@ -1,3 +1,21 @@
-<p>
-  my-orders works!
-</p>
+<h2>My Orders</h2>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Order Id</th>
+      <th>Transaction Id</th>
+      <th>Payment Date</th>
+      <th>Payment Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of orders">
+      <td>{{o.id}}</td>
+      <td>{{o.transactionId}}</td>
+      <td>{{o.paymentDate | date: 'medium'}}</td>
+      <td>{{o.paymentStatus}}</td>
+      <td><a href="#">View</a></td>
+    </tr>
+  </tbody>
+</table>

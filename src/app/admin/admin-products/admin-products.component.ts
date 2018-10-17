@@ -12,10 +12,14 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[];
   filteredProducts: Product[];
   subscription: Subscription;
+  loading: boolean = true;
 
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getProducts().subscribe(data => {
       this.filteredProducts = this.products = data;
+      this.loading = false;
+    }, error => {
+      this.loading = false;
     });
   }
 
@@ -26,7 +30,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   filter(query: string) {
-    console.log(query);
     this.filteredProducts = (query) ? this.products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())) : this.products;
   }
 }

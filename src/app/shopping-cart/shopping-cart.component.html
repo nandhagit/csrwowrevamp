@@ -1,8 +1,8 @@
 <h1>Shopping Cart</h1>
 <ng-container *ngIf="cartItems">
-  <p>You have {{totalCount}} items in your cart!</p>
-  <table class="table">
-    <thead>
+  <p>You have {{getCartCount()}} items in your cart!</p>
+  <table class="table table-hover">
+    <thead class="thead-dark">
       <tr>
         <th></th>
         <th>Product</th>

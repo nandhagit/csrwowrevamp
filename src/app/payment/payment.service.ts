@@ -10,6 +10,6 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   dopayment(paymentPayload: any): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/payment/payment-details', paymentPayload);
+    return this.http.post<any>('/payment/payment-details', paymentPayload);
   }
 }

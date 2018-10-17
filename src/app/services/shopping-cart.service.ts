@@ -14,10 +14,10 @@ export class ShoppingCartService {
   constructor(private http: HttpClient) { }
 
   private create() {
-    return this.http.get("http://localhost:8080/wow/createCart").toPromise()
+    return this.http.get("/wow/createCart").toPromise()
   }
 
-  private async getOrCreateCartId(): Promise<string>{
+  private async getOrCreateCartId(): Promise<string> {
     let cartId = localStorage.getItem("cartId");
     if (cartId) return cartId;
 
@@ -29,34 +29,32 @@ export class ShoppingCartService {
 
   async getCart(): Promise<Observable<any>> {
     let cartId = await this.getOrCreateCartId();
-    return this.http.get("http://localhost:8080/wow/getcartitems", {params:{cart: cartId}});
+    return this.http.get("/wow/getcartitems", { params: { cart: cartId } });
   }
 
-  async addToCart(product: Product):Promise<Observable<any>> {
+  async addToCart(product: Product): Promise<Observable<any>> {
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getItem(product.id, cartId);
-      return item$;
+    return item$;
   }
 
-  async removeFromCart(product: Product):Promise<Observable<any>> {
+  async removeFromCart(product: Product): Promise<Observable<any>> {
     let cartId = await this.getOrCreateCartId();
     let item$ = this.removeItem(product.id, cartId);
-      return item$;
+    return item$;
   }
 
   private getItem(productId: number, cartId: string) {
-    return this.http.post("http://localhost:8080/wow/addtocart", { cart: cartId, product: productId });
+    return this.http.post("/wow/addtocart", { cart: cartId, product: productId });
   }
 
   private removeItem(productId: number, cartId: string) {
-    return this.http.post("http://localhost:8080/wow/removefromcart", { cart: cartId, product: productId });
+    return this.http.post("/wow/removefromcart", { cart: cartId, product: productId });
   }
 
-  async clearCartItems(){
-    let cartId= await this.getOrCreateCartId()
-    return this.http.get("http://localhost:8080/wow/clearCart", { params:{cart: cartId }});
+  async clearCartItems() {
+    let cartId = await this.getOrCreateCartId()
+    return this.http.get("/wow/clearCart", { params: { cart: cartId } });
   }
-
-  
 
 }
