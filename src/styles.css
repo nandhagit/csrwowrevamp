@@ -11,3 +11,8 @@
 .progress-spinner{
     margin: 0 auto;
 }
+
+mat-icon {
+    vertical-align: top;
+    padding-right: 40px;
+}
