@@ -8,11 +8,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/mycart"><mat-icon [matBadge]="getCartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a>
+        <a class="nav-link" routerLink="/mycart"><mat-icon class="cart" [matBadge]="getCartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a>
       </li>
       <li *ngIf="!authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
+      <li *ngIf="!authService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/signup">Sign up</a>
+        </li>
       <li ngbDropdown class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -31,11 +34,11 @@
           {{authService.currentUser.sub}}
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/products">Manage Items</a>
-          <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
-          <a class="dropdown-item" routerLink="/myorders">My Orders</a>
+          <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/products"><mat-icon>settings</mat-icon>Manage Items</a>
+          <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/orders"><mat-icon>view_module</mat-icon>Manage Orders</a>
+          <a class="dropdown-item" routerLink="/myorders"><mat-icon>view_list</mat-icon>My Orders</a>
           <div class="dropdown-divider"></div>
-          <a *ngIf="authService.isLoggedIn()" class="dropdown-item" (click)="authService.logout()" routerLink="/products">Log out</a>
+          <a *ngIf="authService.isLoggedIn()" class="dropdown-item" (click)="authService.logout()" routerLink="/products"><mat-icon>power_settings_new</mat-icon>Log out</a>
         </div>
       </li>
     </ul>

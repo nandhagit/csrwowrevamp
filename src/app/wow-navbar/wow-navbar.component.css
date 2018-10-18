@@ -6,3 +6,7 @@
     min-height: 100px;
     background-color: #ebe9ea;
 }
+
+mat-icon.cart {
+    padding-right: unset;
+}

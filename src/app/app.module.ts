@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -37,16 +37,17 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AboutUsComponent } from './about-us/about-us.component';
 
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatIconModule} from '@angular/material/icon';
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSliderModule } from '@angular/material/slider';
 import { PriceFilterComponent } from './price-filter/price-filter.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { Ng5SliderModule } from 'ng5-slider';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 export function tokenGetter() {
@@ -77,7 +78,8 @@ export function tokenGetter() {
     MembersComponent,
     DashboardComponent,
     AboutUsComponent,
-    PriceFilterComponent
+    PriceFilterComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -153,8 +155,11 @@ export function tokenGetter() {
       component: MyOrdersComponent
     }, {
       path: 'user/:id',
-      component: AboutUsComponent
-    }]),
+      component: UserProfileComponent
+    }, {
+      path: 'signup',
+      component: SignupComponent
+    }], { useHash: true }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
