@@ -5,5 +5,5 @@ export interface Product{
     size: string,
     code: string,
     category: string,
-    subType: string
+    subType: string,
 }

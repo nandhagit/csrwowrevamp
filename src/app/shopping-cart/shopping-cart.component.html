@@ -30,3 +30,5 @@
   <a *ngIf="cartItems.length" class="btn btn-primary btn-sm" routerLink="/checkout">Checkout</a>
   <button *ngIf="cartItems.length" (click)="clearCart()" class="btn btn-danger btn-sm">Clear Shopping Cart</button>
 </ng-container>
+<mat-progress-spinner *ngIf="loading" class="progress-spinner" color="warn" mode="indeterminate" diameter="60">
+</mat-progress-spinner>

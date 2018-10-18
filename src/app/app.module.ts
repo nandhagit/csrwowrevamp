@@ -154,7 +154,7 @@ export function tokenGetter() {
     }, {
       path: 'user/:id',
       component: AboutUsComponent
-    }]),
+    }], {useHash: true}),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

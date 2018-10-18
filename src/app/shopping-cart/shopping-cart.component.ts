@@ -12,6 +12,7 @@ export class ShoppingCartComponent implements OnInit {
 
   cartItems: CartItem[];
   totalPrice = 0;
+  loading: boolean = true;
 
   constructor(private cartService: ShoppingCartService) { }
 
@@ -22,6 +23,7 @@ export class ShoppingCartComponent implements OnInit {
       for (let c of this.cartItems) {
         this.totalPrice += (c.count * c.product.price);
       }
+      this.loading = false;
     });
   }
 
