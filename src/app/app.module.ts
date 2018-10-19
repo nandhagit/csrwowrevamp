@@ -79,7 +79,7 @@ export function tokenGetter() {
     DashboardComponent,
     AboutUsComponent,
     PriceFilterComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

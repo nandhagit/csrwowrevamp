@@ -11,7 +11,6 @@ export class SignupService {
   constructor(private http: HttpClient) { }
 
   saveUser(user: any): Observable<any>{
-    console.log(user)
     return this.http.post("/wow/saveuser", user);
   }
 

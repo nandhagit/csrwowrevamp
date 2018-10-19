@@ -1,62 +1,54 @@
-<div class="card card-1">
-  <div class="card-heading"></div>
-  <div class="card-body">
-    <h2 class="title">Registration Info</h2>
-    <form method="POST">
-      <div class="input-group">
-        <input class="input--style-1" type="text" placeholder="NAME" name="name">
-      </div>
-      <div class="row row-space">
-        <div class="col-2">
-          <div class="input-group">
-            <input class="input--style-1 js-datepicker" type="text" placeholder="BIRTHDATE" name="birthday">
-            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="input-group">
-            <div class="rs-select2 js-select-simple select--no-search">
-              <select name="gender" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-                <option disabled="disabled" selected="selected">GENDER</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 82px;"><span
-                  class="selection"><span class="select2-selection select2-selection--single" role="combobox"
-                    aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-gender-wv-container"><span
-                      class="select2-selection__rendered" id="select2-gender-wv-container" title="GENDER">GENDER</span><span
-                      class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span
-                  class="dropdown-wrapper" aria-hidden="true"></span></span>
-              <div class="select-dropdown"></div>
-            </div>
-          </div>
+<form #signupForm="ngForm" (ngSubmit)="signin(signupForm.value)">
+    <div class="form-row justify-content-center">
+        <div class="form-group col-md-6">
+          <img src="https://picsum.photos/550/250" alt="">
         </div>
       </div>
-      <div class="input-group">
-        <div class="rs-select2 js-select-simple select--no-search">
-          <select name="class" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-            <option disabled="disabled" selected="selected">CLASS</option>
-            <option>Class 1</option>
-            <option>Class 2</option>
-            <option>Class 3</option>
-          </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 69px;"><span
-              class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-                aria-expanded="false" tabindex="0" aria-labelledby="select2-class-nl-container"><span class="select2-selection__rendered"
-                  id="select2-class-nl-container" title="CLASS">CLASS</span><span class="select2-selection__arrow" role="presentation"><b
-                    role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-          <div class="select-dropdown"></div>
-        </div>
-      </div>
-      <div class="row row-space">
-        <div class="col-2">
-          <div class="input-group">
-            <input class="input--style-1" type="text" placeholder="REGISTRATION CODE" name="res_code">
-          </div>
-        </div>
-      </div>
-      <div class="p-t-20">
-        <button class="btn btn--radius btn--green" type="submit">Submit</button>
-      </div>
-    </form>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-3">
+      <input #fname="ngModel" [(ngModel)]="firstname" name="firstname" type="text" class="form-control" id="firstname" placeholder="first name">
+    </div>
+    <div class="form-group col-md-3">
+      <input #lname="ngModel" [(ngModel)]="lastname" name="lastname" type="text" class="form-control" id="lastname"  placeholder="last name">
+    </div>
   </div>
-</div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-2">
+      <input #mail="ngModel" [(ngModel)]="email" name="email" type="email" class="form-control" id="email" placeholder="email address">
+    </div>
+    <div class="form-group col-md-4">
+      <input #phonenum="ngModel" [(ngModel)]="phone" name="phone" type="email" class="form-control" id="phone" placeholder="10-digit phone number">
+    </div>
+  </div>
+  <div class="form-row  justify-content-center">
+    <div class="form-group col-md-3">
+      <div class="input-group">
+        <input [(ngModel)]="dob" ngbDatepicker id="dob" #dateofbirth="ngbDatepicker" name="dob" class="form-control" placeholder="DOB (yyyy-mm-dd)">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="dateofbirth.toggle()" type="button">
+            <mat-icon>calendar_today</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+    </div>
+  </div>
+
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-3">
+      <input #pwd="ngModel" [(ngModel)]="password" name="password" type="password" class="form-control" id="password" placeholder="password">
+    </div>
+    <div class="form-group col-md-3">
+      <input type="password" class="form-control" id="repassword" placeholder="re-enter password">
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-3">
+      <button type="submit" class="btn btn-success btn-block">Sign in</button>
+    </div>
+    <div class="form-group col-md-3">
+      <button type="reset" class="btn btn-secondary btn-block">Reset</button>
+    </div>
+  </div>
+</form>

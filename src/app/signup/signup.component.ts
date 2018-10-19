@@ -33,9 +33,11 @@ export class SignupComponent implements OnInit {
         '';
   }
 
-  saveUser(form: NgForm) {
+  signin(form: any) {
+    let dob: Date = new Date(form.dob.year, form.dob.month, form.dob.day);
+    form.dob = dob;
     this.signupservice.saveUser(form).subscribe(response => {
-      this.signinForm.reset();
+      //this.signinForm.reset();
     })
   }
 

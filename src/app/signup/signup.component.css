@@ -1,9 +1,6 @@
-mat-grid-list.mat-grid-list{
-    background-color: white;
+.mat-icon{
+    padding: unset;
 }
-.side-block{
-    background-color: #b5b4b4;
-}
-.mat-dialog-content{
-    max-height: none;
+img{
+    opacity: 0.7;
 }
