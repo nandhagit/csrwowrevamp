@@ -22,7 +22,10 @@
             Products
           </a>
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a *ngFor="let c of categories$ | async" class="dropdown-item" routerLink="/products" [queryParams]="{category: c.name, id:c.id}">{{c.name}}</a>
+            <div  *ngFor="let c of categories; let i = index">
+            <a class="dropdown-item" routerLink="/products" [queryParams]="{category: c.name, id:c.id}">{{c.name}}</a>
+            <div *ngIf="(i+1)<categories.length" class="dropdown-divider"></div>
+          </div>
           </div>
         </li>
       <li class="nav-item">
@@ -35,8 +38,12 @@
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/products"><mat-icon>settings</mat-icon>Manage Items</a>
+          <div class="dropdown-divider"></div>
           <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/orders"><mat-icon>view_module</mat-icon>Manage Orders</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink="/myorders"><mat-icon>view_list</mat-icon>My Orders</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/myorders"><mat-icon>person</mat-icon>My Profile</a>
           <div class="dropdown-divider"></div>
           <a *ngIf="authService.isLoggedIn()" class="dropdown-item" (click)="authService.logout()" routerLink="/products"><mat-icon>power_settings_new</mat-icon>Log out</a>
         </div>

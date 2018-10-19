@@ -19,11 +19,13 @@ export class WowNavbarComponent {
 
   shoppingCartItemCount: number;
 
-  categories$;
+  categories;
 
   constructor(private categoryService: CategoryService, 
     private cartService: ShoppingCartService, private authService: AuthService) { 
-    this.categories$ = this.categoryService.getCategories();
+     this.categoryService.getCategories().subscribe(result=>{
+      this.categories = result
+    });
   }
 
   async ngOnInit() {

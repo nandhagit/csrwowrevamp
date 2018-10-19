@@ -1,6 +1,8 @@
 <h2>Manage Items</h2>
-<p><a routerLink="/admin/product/new" class="btn btn-primary">New Item</a></p>
-<p><input #searchQuery (keyup)="filter(searchQuery.value)" type="text" class="form-control" placeholder="search..."></p>
+<div class="row no-gutters">
+    <input #searchQuery (keyup)="filter(searchQuery.value)" type="text" class="col-md-4 form-control" placeholder="search...">
+    <a routerLink="/admin/product/new" class="col-md-3 btn btn-primary">New Item</a>
+</div>
 <table class="table table-hover">
     <thead class="thead-dark">
         <tr>
@@ -8,7 +10,7 @@
             <th>Product Code</th>
             <th>Price</th>
             <th>Category</th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +20,8 @@
             <td>{{ p.price }}</td>
             <td>{{p.category}}</td>
             <td>
-                <a [routerLink]="['/admin/products/', p.id]">Edit</a>
+                <a [routerLink]="['/admin/products/', p.id]"><mat-icon>edit</mat-icon></a>
+                <a [routerLink]="['/admin/products/', p.id]"><mat-icon>delete</mat-icon></a>
             </td>
         </tr>
     </tbody>
