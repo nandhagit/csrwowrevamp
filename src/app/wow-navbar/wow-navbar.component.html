@@ -34,13 +34,13 @@
       <li *ngIf="authService.isLoggedIn()" ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          {{authService.currentUser.sub}}
+          {{authService.currentUser.firstname}}
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/products"><mat-icon>settings</mat-icon>Manage Items</a>
-          <div class="dropdown-divider"></div>
+          <div *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-divider"></div>
           <a *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-item" routerLink="/admin/orders"><mat-icon>view_module</mat-icon>Manage Orders</a>
-          <div class="dropdown-divider"></div>
+          <div *ngIf="authService.currentUser.scopes?.includes('ADMIN')" class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink="/myorders"><mat-icon>view_list</mat-icon>My Orders</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink="/myorders"><mat-icon>person</mat-icon>My Profile</a>

@@ -4,6 +4,7 @@
     <tr>
       <th>Customer Id</th>
       <th>Order Id</th>
+      <th>Order Status</th>
       <th>Transaction Id</th>
       <th>Payment Date</th>
       <th>Payment Status</th>
@@ -14,12 +15,13 @@
   <tbody>
 
     <tr *ngFor="let o of orders">
-      <td><a [routerLink]="['/user', o.user]">{{o.user}}</a></td>
+      <td><a [routerLink]="['/user', o.user.id]">{{o.user.id}}</a></td>
       <td>{{o.id}}</td>
+      <td>{{o.status}}</td>
       <td>{{o.transactionId}}</td>
       <td>{{o.paymentDate | date: 'medium'}}</td>
       <td>{{o.paymentStatus}}</td>
-      <td><a href="#">View</a></td>
+      <td><a [routerLink]="['/vieworder', o.id]">View</a></td>
     </tr>
   </tbody>
 </table>

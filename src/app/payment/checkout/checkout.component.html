@@ -3,25 +3,19 @@
   <div class="col-md-6">
     <form ngNoForm action="https://sandboxsecure.payu.in/_payment" name="payuform" method="POST">
       <div class="form-group">
-        <label for="productInfo">Product Name:</label>
-        <input type="text" class="form-control" id="productInfo" name="productinfo" [(ngModel)]="payuform.productinfo">
+        <label for="firstname">Name</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="user.firstname"
+        disabled="true">
       </div>
       <div class="form-group">
-        <label for="firstname">Name:</label>
-        <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="payuform.firstname">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" disabled="true">
       </div>
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="payuform.email">
+        <label for="email">Phone</label>
+        <input type="number" class="form-control" id="phone" name="phone" [(ngModel)]="user.phone" disabled="true">
       </div>
-      <div class="form-group">
-        <label for="email">Phone:</label>
-        <input type="number" class="form-control" id="phone" name="phone" [(ngModel)]="payuform.phone">
-      </div>
-      <div class="form-group">
-        <label for="amount">Amount:</label>
-        <input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="payuform.amount">
-      </div>
+      <address (onAddressSelect)="onSelectAddress($event)"></address>
       <textarea name="surl" id="surl" ng-model="surl" rows="2" cols="2" hidden [(ngModel)]="payuform.surl"></textarea>
       <textarea name="furl" id="furl" ng-model="furl" rows="2" cols="2" hidden [(ngModel)]="payuform.furl"></textarea>
       <textarea name="key" id="key" ng-model="key" rows="2" cols="2" hidden [(ngModel)]="payuform.key"></textarea>
@@ -34,6 +28,6 @@
     </form>
   </div>
   <div class="col-md-6">
-    <shopping-cart-summary></shopping-cart-summary>
+    <shopping-cart-summary [cartitems]="cartItems"></shopping-cart-summary>
   </div>
 </div>

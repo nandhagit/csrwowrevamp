@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
@@ -6,22 +6,26 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './shopping-cart-summary.component.html',
   styleUrls: ['./shopping-cart-summary.component.css']
 })
-export class ShoppingCartSummaryComponent implements OnInit {
+export class ShoppingCartSummaryComponent {
 
-  cartItems;
-  totalPrice = 0;
-  totalCount = 0;
+  @Input('cartitems') cartItems;
 
   constructor(private cartService: ShoppingCartService) { }
 
-  async ngOnInit() {
-    (await this.cartService.getCart()).subscribe(cart => {
-      this.cartItems = cart;
-      for (let c of this.cartItems) {
-        this.totalPrice += (c.count * c.product.price);
-        this.totalCount += c.count;
-      }
-    })
+  get count(){
+    let totalCount = 0;
+    for (let c of this.cartItems) {
+      totalCount += c.count;
+    }
+    return totalCount;
+  }
+
+  get total(){
+    let totalPrice = 0;
+    for (let c of this.cartItems) {
+      totalPrice += (c.count * c.product.price);
+    }
+    return totalPrice;
   }
 
 }

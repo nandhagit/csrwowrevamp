@@ -15,7 +15,7 @@
       <td>{{o.transactionId}}</td>
       <td>{{o.paymentDate | date: 'medium'}}</td>
       <td>{{o.paymentStatus}}</td>
-      <td><a href="#">View</a></td>
+      <td><a  [routerLink]="['/vieworder', o.id]">View</a></td>
     </tr>
   </tbody>
 </table>

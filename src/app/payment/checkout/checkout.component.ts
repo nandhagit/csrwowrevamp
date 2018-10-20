@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {PaymentService} from '../payment.service';
-
+import { PaymentService } from '../payment.service';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -9,40 +11,64 @@ import {PaymentService} from '../payment.service';
 })
 export class CheckoutComponent implements OnInit {
 
-
+  user: any = [];
+  cartItems: any = [];
   public payuform: any = {};
   disablePaymentButton: boolean = true;
-  constructor(private paymentservice: PaymentService) { }
+  address: number;
 
-  ngOnInit() {
+  constructor(private paymentservice: PaymentService,
+    private userService: UserService,
+    private authService: AuthService,
+    private cartService: ShoppingCartService) {
+
+  }
+
+  async ngOnInit() {
+    this.userService.getCurrentUser().subscribe(data => {
+      this.user = data;
+    });
+    (await this.cartService.getCart()).subscribe(cart => {
+      this.cartItems = cart;
+    });
   }
 
   confirmPayment() {
     const paymentPayload = {
-      email: this.payuform.email,
-      name: this.payuform.firstname,
-      phone: this.payuform.phone,
-      productInfo: this.payuform.productinfo,
-      amount: this.payuform.amount
+      email: this.user.email,
+      name: this.user.firstname,
+      phone: this.user.phone,
+      productInfo: 'Info',
+      amount: this.total,
+      address: this.address,
+      cart: localStorage.getItem('cartId')
     };
+    console.log(paymentPayload)
     return this.paymentservice.dopayment(paymentPayload).subscribe(
       data => {
-      console.log(data);
-      this.payuform.txnid = data.txnId;
-      this.payuform.surl = data.sUrl;
-      this.payuform.furl = data.fUrl;
-      this.payuform.key = data.key;
-      this.payuform.hash = data.hash;
-      this.payuform.txnid = data.txnId;
-      this.disablePaymentButton = false;
-      this.payuform.sp = "payu_paisa";
-    }, error1 => {
-        console.log(error1);
+        this.payuform.txnid = data.txnId;
+        this.payuform.surl = data.sUrl;
+        this.payuform.furl = data.fUrl;
+        this.payuform.key = data.key;
+        this.payuform.hash = data.hash;
+        this.payuform.txnid = data.txnId;
+        this.disablePaymentButton = false;
+        this.payuform.sp = "payu_paisa";
+      }, error => {
+        console.log(error);
       });
   }
 
-  placeOrder(value){
-    console.log(value)
+  get total() {
+    let totalPrice = 0;
+    for (let c of this.cartItems) {
+      totalPrice += (c.count * c.product.price);
+    }
+    return totalPrice;
+  }
+
+  onSelectAddress(event: any) {
+    this.address = event;
   }
 
 }

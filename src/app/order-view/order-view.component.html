@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <mat-icon>mood</mat-icon>{{order.user?.firstname}}
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <mat-icon>email</mat-icon>{{order.user?.email}}
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <mat-icon>phone</mat-icon>{{order.user?.phone}}
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <mat-icon>home</mat-icon>{{order.address?.address}}
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Product Code</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let c of order.cart?.cartItems">
+    <td>{{c.product.name}}</td>
+    <td>{{c.product.code}}</td>
+    <td>{{c.count}}</td>
+  </tr>
+</tbody>
+</table>

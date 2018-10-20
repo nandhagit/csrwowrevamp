@@ -3,7 +3,7 @@
     <nav class="col-md-3 d-none d-md-block sidebar">
       <div class="sidebar-sticky text-center pt-4">
         <img class="rounded-circle" src="/assets/user.png" alt="User image" width="140" height="140">
-        <h2>Nandhakumar</h2>
+        <h2>{{user.firstname}} {{user.lastname}}</h2>
         <ul class="nav flex-column pt-4">
           <li class="nav-item">
             <a class="nav-link" href="#">
@@ -27,13 +27,13 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <mat-icon>email</mat-icon>kumarvvp7@gmail.com
+          <mat-icon>email</mat-icon>{{user.email}}
           <a class="float-right"><mat-icon>edit</mat-icon></a>
         </div>
       </div>
       <div class="card">
         <div class="card-body">
-          <mat-icon>phone</mat-icon>9589897874
+          <mat-icon>phone</mat-icon>{{user.phone}}
           <a class="float-right"><mat-icon>edit</mat-icon></a>
         </div>
       </div>
