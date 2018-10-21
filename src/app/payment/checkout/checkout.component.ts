@@ -28,8 +28,9 @@ export class CheckoutComponent implements OnInit {
     this.userService.getCurrentUser().subscribe(data => {
       this.user = data;
     });
-    (await this.cartService.getCart()).subscribe(cart => {
-      this.cartItems = cart;
+    (await this.cartService.getCart()).subscribe(result => {
+      let cart = result;
+      this.cartItems = cart.cartItems;
     });
   }
 

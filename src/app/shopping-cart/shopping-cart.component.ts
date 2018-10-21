@@ -17,9 +17,11 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private cartService: ShoppingCartService) { }
 
   async ngOnInit() {
+
     let cart$ = await this.cartService.getCart();
-    cart$.subscribe(cartItems => {
-      this.cartItems = cartItems;
+    cart$.subscribe(result => {
+      let cart = result;
+      this.cartItems = cart.cartItems;
       for (let c of this.cartItems) {
         this.totalPrice += (c.count * c.product.price);
       }
@@ -34,7 +36,7 @@ export class ShoppingCartComponent implements OnInit {
   async clearCart() {
     (await this.cartService.clearCartItems()).subscribe(() => {
       localStorage.removeItem("cartId");
-     // this.ngOnInit()
+      // this.ngOnInit()
     })
   }
 

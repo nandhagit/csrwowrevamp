@@ -29,8 +29,10 @@ export class WowNavbarComponent {
   }
 
   async ngOnInit() {
-    (await this.cartService.getCart()).subscribe(cart => {
-      let cartItems = cart;
+    
+    (await this.cartService.getCart()).subscribe(result => {
+      let cart = result;
+      let cartItems = cart.cartItems;
       let totalCount=0;
       for (let c of cartItems) {
         totalCount += c.count;

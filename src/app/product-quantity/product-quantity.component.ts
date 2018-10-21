@@ -6,47 +6,51 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './product-quantity.component.html',
   styleUrls: ['./product-quantity.component.css']
 })
-export class ProductQuantityComponent implements OnInit{
+export class ProductQuantityComponent implements OnInit {
 
   @Input("product") product;
   @Input("showAdd") showAdd;
-  shoppingCart;
+  @Input("cart") shoppingCart;
   count;
 
   constructor(private cartService: ShoppingCartService) {
-    this.getCartItems();
   }
 
   async addToCart() {
-    (await this.cartService.addToCart(this.product)).subscribe(async result => {
-      (await this.getCartItems()).subscribe(result => {
-        this.shoppingCart = result;
+    (await this.cartService.addToCart(this.product)).subscribe( result => {
+      //(await this.getCartItems()).subscribe(result => {
+        let cart = result;
+        this.shoppingCart = cart.cartItems;
         this.getQuantity();
         this.setCount();
-      });
+      //});
     });
   }
 
   async removeFromCart() {
-    (await this.cartService.removeFromCart(this.product)).subscribe(async result => {
-      (await this.getCartItems()).subscribe(result => {
-        this.shoppingCart = result;
+    (await this.cartService.removeFromCart(this.product)).subscribe( result => {
+      //(await this.getCartItems()).subscribe(result => {
+        let cart = result;
+        this.shoppingCart = cart.cartItems;
         this.getQuantity();
         this.setCount();
-      });
+      //});
     });
   }
 
   getQuantity() {
-    if (!this.shoppingCart) { this.count = 0; };
+    if (!this.shoppingCart) { 
+      this.count = 0; 
+      return;
+    };
     let item = this.shoppingCart.find(item => item.product.id === this.product.id)
     this.count = item ? item.count : 0;
   }
 
-  async getCartItems() {
-    let cart$ = await this.cartService.getCart();
-    return cart$;
-  }
+  //async getCartItems() {
+    //let cart$ = await this.cartService.getCart();
+    //return cart$;
+  //}
 
   setCount() {
     let totalCount = 0;
@@ -56,12 +60,11 @@ export class ProductQuantityComponent implements OnInit{
     localStorage.setItem('cartCount', totalCount.toString())
   }
 
-  async ngOnInit() {
-    (await this.getCartItems()).subscribe(result => {
-      this.shoppingCart = result;
-      this.getQuantity();
-    });
+   ngOnInit() {
+    this.getQuantity();
+      console.log(this.shoppingCart)
   }
 
+  
 
 }

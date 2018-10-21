@@ -10,6 +10,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class AuthService {
   authenticated = false;
   user: any;
+  cart: any;
   constructor(private http: HttpClient) { }
 
   loggedIn() {
@@ -17,7 +18,7 @@ export class AuthService {
   }
 
   authenticate(credentials): Observable<any> {
-    console.log(credentials);
+    let cartId = localStorage.getItem('cartId');
     return this.http.post(
       "/auth",
       credentials
@@ -25,34 +26,49 @@ export class AuthService {
       let result: any = response
       if (result && result.token) {
         localStorage.setItem("token", result.token)
+        this.http.get('/wow/mergecart', { params: { cart: cartId } }).subscribe(data => {
+          this.cart = data;
+          localStorage.setItem('cartId', this.cart.id);
+          this.setCount()
+        });
         return true;
       }
       return false;
-    }), catchError(error=>{
+    }), catchError(error => {
       return of(false);
     }))
   }
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("cartId");
+    localStorage.removeItem("cartCount");
   }
 
   isLoggedIn() {
     let token = localStorage.getItem("token")
-    if(!token) {
+    if (!token) {
       return false;
     }
     let jwtHelper = new JwtHelperService();
     return !jwtHelper.isTokenExpired(token);
   }
 
-  get currentUser(){
+  get currentUser() {
     let token = localStorage.getItem("token")
-    if(!token) {
+    if (!token) {
       return false;
     }
     let jwtHelper = new JwtHelperService();
     return jwtHelper.decodeToken(token);
   }
-  
+
+  setCount() {
+    let totalCount = 0;
+    for (let c of this.cart.cartItems) {
+      totalCount += c.count;
+    }
+    localStorage.setItem('cartCount', totalCount.toString())
+  }
+
 }

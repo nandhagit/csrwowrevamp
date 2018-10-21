@@ -26,7 +26,7 @@ export class ShoppingCartService {
 
   async getCart(): Promise<Observable<any>> {
     let cartId = await this.getOrCreateCartId();
-    return this.http.get("/wow/getcartitems", { params: { cart: cartId } });
+    return this.http.get("/wow/getcart", { params: { cart: cartId } });
   }
 
   async addToCart(product: Product): Promise<Observable<any>> {
@@ -53,5 +53,6 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCartId()
     return this.http.get("/wow/clearCart", { params: { cart: cartId } });
   }
+  
 
 }

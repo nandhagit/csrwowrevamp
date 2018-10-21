@@ -6,12 +6,18 @@ import { ShoppingCartService } from "../services/shopping-cart.service";
   templateUrl: "./product-card.component.html",
   styleUrls: ["./product-card.component.css"]
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit{
 
   @Input("product") product;
   @Input("show-actions") showActions = true;
+  @Input("cart") cart;
   
   constructor() {
+    
+  }
+
+  ngOnInit(){
+    console.log(this.cart)
   }
 
 }
