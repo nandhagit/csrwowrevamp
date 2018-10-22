@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
   minPrice: number;
   maxPrice: number;
   subType;
-  shoppingCart;
+  shoppingCart:any = [];
 
   constructor(
     private productService: ProductService,
@@ -48,6 +48,12 @@ export class ProductsComponent implements OnInit {
       this.minPrice = result[0];
       this.maxPrice = result[1];
     })
+
+    this.cartService.getCart().subscribe(result => {
+      let cart:any = result;
+      this.shoppingCart = cart.cartItems;
+      console.log(this.shoppingCart)
+    });
   }
 
   filterSubType(subType: string) {
@@ -62,12 +68,7 @@ export class ProductsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let cart$ = await this.cartService.getCart();
-    cart$.subscribe(result => {
-      let cart = result;
-      this.shoppingCart = cart.cartItems;
-      console.log(this.shoppingCart)
-    });
+    
   }
 
 }

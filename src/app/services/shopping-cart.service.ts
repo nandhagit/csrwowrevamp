@@ -24,8 +24,8 @@ export class ShoppingCartService {
     return cart.id
   }
 
-  async getCart(): Promise<Observable<any>> {
-    let cartId = await this.getOrCreateCartId();
+   getCart() {
+    let cartId = localStorage.getItem("cartId");
     return this.http.get("/wow/getcart", { params: { cart: cartId } });
   }
 

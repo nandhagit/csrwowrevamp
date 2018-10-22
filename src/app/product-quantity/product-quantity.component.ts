@@ -10,7 +10,7 @@ export class ProductQuantityComponent implements OnInit {
 
   @Input("product") product;
   @Input("showAdd") showAdd;
-  @Input("cart") shoppingCart;
+  @Input("shopping-cart") shoppingCart;
   count;
 
   constructor(private cartService: ShoppingCartService) {
@@ -21,8 +21,8 @@ export class ProductQuantityComponent implements OnInit {
       //(await this.getCartItems()).subscribe(result => {
         let cart = result;
         this.shoppingCart = cart.cartItems;
-        this.getQuantity();
-        this.setCount();
+        //this.getQuantity();
+        //this.setCount();
       //});
     });
   }
@@ -32,16 +32,17 @@ export class ProductQuantityComponent implements OnInit {
       //(await this.getCartItems()).subscribe(result => {
         let cart = result;
         this.shoppingCart = cart.cartItems;
-        this.getQuantity();
-        this.setCount();
+        //this.getQuantity();
+        //this.setCount();
       //});
     });
   }
 
   getQuantity() {
+    console.log("sdfgdfg"+this.shoppingCart+"asdf")
     if (!this.shoppingCart) { 
-      this.count = 0; 
-      return;
+      return this.count = 0; 
+      
     };
     let item = this.shoppingCart.find(item => item.product.id === this.product.id)
     this.count = item ? item.count : 0;
@@ -61,8 +62,8 @@ export class ProductQuantityComponent implements OnInit {
   }
 
    ngOnInit() {
-    this.getQuantity();
-      console.log(this.shoppingCart)
+    //this.getQuantity();
+      //console.log(this.shoppingCart)
   }
 
   

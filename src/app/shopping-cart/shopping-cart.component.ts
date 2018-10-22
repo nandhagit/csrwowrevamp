@@ -18,9 +18,8 @@ export class ShoppingCartComponent implements OnInit {
 
   async ngOnInit() {
 
-    let cart$ = await this.cartService.getCart();
-    cart$.subscribe(result => {
-      let cart = result;
+    this.cartService.getCart().subscribe(result => {
+      let cart:any = result;
       this.cartItems = cart.cartItems;
       for (let c of this.cartItems) {
         this.totalPrice += (c.count * c.product.price);

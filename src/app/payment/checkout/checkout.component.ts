@@ -24,12 +24,12 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.userService.getCurrentUser().subscribe(data => {
       this.user = data;
     });
-    (await this.cartService.getCart()).subscribe(result => {
-      let cart = result;
+    this.cartService.getCart().subscribe(result => {
+      let cart:any = result;
       this.cartItems = cart.cartItems;
     });
   }

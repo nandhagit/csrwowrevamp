@@ -10,14 +10,14 @@ export class ProductCardComponent implements OnInit{
 
   @Input("product") product;
   @Input("show-actions") showActions = true;
-  @Input("cart") cart;
+  @Input("shopping-cart") cart;
   
   constructor() {
-    
+    //console.log(this.cart)
   }
 
   ngOnInit(){
-    console.log(this.cart)
+    
   }
 
 }
