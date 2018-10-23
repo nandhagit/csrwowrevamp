@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
       let minPrice = params.get('min');
       let maxPrice = params.get('max');
       this.filteredProducts = (this.category) ? this.products.filter(p => {
-        return p.category === this.category
+        return p.category === this.category;
       }) : this.products;
       this.filterSubType(this.subType);
       this.filterPrice(+minPrice, +maxPrice);
@@ -47,12 +47,6 @@ export class ProductsComponent implements OnInit {
     this.productService.minMaxPrice().subscribe(result => {
       this.minPrice = result[0];
       this.maxPrice = result[1];
-    })
-
-    this.cartService.getCart().subscribe(result => {
-      let cart:any = result;
-      this.shoppingCart = cart.cartItems;
-      console.log(this.shoppingCart)
     });
   }
 
@@ -64,11 +58,14 @@ export class ProductsComponent implements OnInit {
 
   filterPrice(minPrice: number, maxPrice: number) {
     this.filteredProducts = (minPrice && maxPrice) ? this.filteredProducts.filter(p =>
-      (p.price > +minPrice) && (p.price < +maxPrice)) : this.filteredProducts
+      (p.price > +minPrice) && (p.price < +maxPrice)) : this.filteredProducts;
   }
 
   async ngOnInit() {
-    
+    (await this.cartService.getCart()).subscribe(result => {
+      let cart:any = result;
+      this.shoppingCart = cart.cartItems;
+    });
   }
 
 }

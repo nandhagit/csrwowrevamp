@@ -1,4 +1,4 @@
-<button *ngIf="(count===0 && showAdd); else updateQuantity" class="btn btn-success btn-block" (click)="addToCart()">Add
+<button *ngIf="(getQuantity()===0 && showAdd); else updateQuantity" class="btn btn-success btn-block" (click)="addToCart()">Add
   to cart</button>
 <ng-template #updateQuantity>
   <div class="row no-gutters">
@@ -6,7 +6,7 @@
       <button class="btn btn-block btn-secondary" (click)="removeFromCart()">-</button>
     </div>
     <div class="col text-center">
-      {{count}} in cart
+      {{getQuantity()}} in cart
     </div>
     <div class="col-2">
       <button class="btn btn-block btn-secondary" (click)="addToCart()">+</button>

@@ -19,34 +19,31 @@ export class AuthService {
 
   authenticate(credentials): Observable<any> {
     let cartId = localStorage.getItem('cartId');
-    return this.http.post(
-      "/auth",
-      credentials
-    ).pipe(map(response => {
-      let result: any = response
+    return this.http.post('/auth', credentials).pipe(map(response => {
+      let result: any = response;
       if (result && result.token) {
-        localStorage.setItem("token", result.token)
+        localStorage.setItem('token', result.token);
         this.http.get('/wow/mergecart', { params: { cart: cartId } }).subscribe(data => {
           this.cart = data;
           localStorage.setItem('cartId', this.cart.id);
-          this.setCount()
+          this.setCount();
         });
         return true;
       }
       return false;
     }), catchError(error => {
       return of(false);
-    }))
+    }));
   }
 
   logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("cartId");
-    localStorage.removeItem("cartCount");
+    localStorage.removeItem('token');
+    localStorage.removeItem('cartId');
+    localStorage.removeItem('cartCount');
   }
 
   isLoggedIn() {
-    let token = localStorage.getItem("token")
+    let token = localStorage.getItem('token');
     if (!token) {
       return false;
     }
@@ -55,7 +52,7 @@ export class AuthService {
   }
 
   get currentUser() {
-    let token = localStorage.getItem("token")
+    let token = localStorage.getItem('token');
     if (!token) {
       return false;
     }
@@ -68,7 +65,7 @@ export class AuthService {
     for (let c of this.cart.cartItems) {
       totalCount += c.count;
     }
-    localStorage.setItem('cartCount', totalCount.toString())
+    localStorage.setItem('cartCount', totalCount.toString());
   }
 
 }

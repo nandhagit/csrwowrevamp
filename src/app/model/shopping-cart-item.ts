@@ -1,6 +1,11 @@
-import { Product } from "./product";
+import { Product } from '../model/product';
 
-export interface ShoppingCartItem{
+export class CartItem {
+
     product: Product;
     count: number;
+
+    get totalPrice() {
+        return this.product.price * this.count;
+    }
 }

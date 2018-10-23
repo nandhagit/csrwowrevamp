@@ -14,7 +14,7 @@
       <tr *ngFor="let c of cartItems">
         <td><div class="thumbnail" [style.backgroundImage]="'url(https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png)'" ></div></td>
         <td>{{c.product.name}}</td>
-        <td><product-quantity [product]="c.product"></product-quantity></td>
+        <td><product-quantity [product]="c.product" [shopping-cart]="cartItems"></product-quantity></td>
         <td class="text-right">{{(c.product.price * c.count)|currency:'INR'}}</td>
       </tr>
     </tbody>

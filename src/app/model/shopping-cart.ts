@@ -1,5 +1,6 @@
-import { ShoppingCartItem } from "./shopping-cart-item";
+export interface Cart{
 
-export interface ShoppingCart{
-    cartItem: ShoppingCartItem[];
+    productId: number;
+    userId: number;
+    
 }

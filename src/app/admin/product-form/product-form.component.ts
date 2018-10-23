@@ -57,7 +57,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   delete() {
-    if (!confirm("Are you sure?")) return;
+    if (!confirm('Are you sure?')) { return; }
     this.productService.deleteProduct(this.id).subscribe(data => {
 
     });

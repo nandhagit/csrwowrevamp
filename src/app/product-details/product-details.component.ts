@@ -11,8 +11,8 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product:Product;
-  id:string;
+  product: any = [];
+  id: string;
 
   constructor(private productService: ProductService,
     private router: Router,
@@ -21,7 +21,7 @@ export class ProductDetailsComponent implements OnInit {
     if (this.id) {
       this.productService.getProduct(this.id).pipe(take(1)).subscribe(data => {
         this.product = data;
-      })
+      });
     }
   }
 

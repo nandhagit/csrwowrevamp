@@ -12,7 +12,7 @@ export class ShoppingCartSummaryComponent {
 
   constructor(private cartService: ShoppingCartService) { }
 
-  get count(){
+  get count() {
     let totalCount = 0;
     for (let c of this.cartItems) {
       totalCount += c.count;
@@ -20,7 +20,7 @@ export class ShoppingCartSummaryComponent {
     return totalCount;
   }
 
-  get total(){
+  get total() {
     let totalPrice = 0;
     for (let c of this.cartItems) {
       totalPrice += (c.count * c.product.price);

@@ -9,13 +9,13 @@ import { UserService } from '../services/user.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  user: any=[];
+  user: any = [];
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { 
-    let userId = route.snapshot.paramMap.get("id")
-    userService.getUser(userId).subscribe(data=>{
-      this.user=data;
-    })
+  constructor(private route: ActivatedRoute, private userService: UserService) {
+    let userId = route.snapshot.paramMap.get('id');
+    userService.getUser(userId).subscribe(data => {
+      this.user = data;
+    });
   }
 
   ngOnInit() {

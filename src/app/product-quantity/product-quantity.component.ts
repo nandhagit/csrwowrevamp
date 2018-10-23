@@ -6,11 +6,11 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './product-quantity.component.html',
   styleUrls: ['./product-quantity.component.css']
 })
-export class ProductQuantityComponent implements OnInit {
+export class ProductQuantityComponent {
 
-  @Input("product") product;
-  @Input("showAdd") showAdd;
-  @Input("shopping-cart") shoppingCart;
+  @Input('product') product;
+  @Input('showAdd') showAdd;
+  @Input('shopping-cart') cartItems;
   count;
 
   constructor(private cartService: ShoppingCartService) {
@@ -18,54 +18,34 @@ export class ProductQuantityComponent implements OnInit {
 
   async addToCart() {
     (await this.cartService.addToCart(this.product)).subscribe( result => {
-      //(await this.getCartItems()).subscribe(result => {
-        let cart = result;
-        this.shoppingCart = cart.cartItems;
-        //this.getQuantity();
-        //this.setCount();
-      //});
+        const cart = result;
+        this.cartItems = cart.cartItems;
+        this.setCount();
     });
   }
 
   async removeFromCart() {
     (await this.cartService.removeFromCart(this.product)).subscribe( result => {
-      //(await this.getCartItems()).subscribe(result => {
-        let cart = result;
-        this.shoppingCart = cart.cartItems;
-        //this.getQuantity();
-        //this.setCount();
-      //});
+        const cart = result;
+        this.cartItems = cart.cartItems;
+        this.setCount();
     });
   }
 
   getQuantity() {
-    console.log("sdfgdfg"+this.shoppingCart+"asdf")
-    if (!this.shoppingCart) { 
-      return this.count = 0; 
-      
-    };
-    let item = this.shoppingCart.find(item => item.product.id === this.product.id)
-    this.count = item ? item.count : 0;
+    if (!this.cartItems) {
+      return this.count = 0;
+    }
+    const item = this.cartItems.find(i => i.product.id === this.product.id);
+    return item ? item.count : 0;
   }
-
-  //async getCartItems() {
-    //let cart$ = await this.cartService.getCart();
-    //return cart$;
-  //}
 
   setCount() {
     let totalCount = 0;
-    for (let c of this.shoppingCart) {
+    for (let c of this.cartItems) {
       totalCount += c.count;
     }
-    localStorage.setItem('cartCount', totalCount.toString())
+    localStorage.setItem('cartCount', totalCount.toString());
   }
-
-   ngOnInit() {
-    //this.getQuantity();
-      //console.log(this.shoppingCart)
-  }
-
-  
 
 }

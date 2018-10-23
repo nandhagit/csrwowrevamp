@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { Observable } from 'rxjs';
-import { CartItem } from './shopping-cart-item';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,16 +8,15 @@ import { CartItem } from './shopping-cart-item';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  cartItems: CartItem[];
+  cartItems: any = [];
   totalPrice = 0;
   loading: boolean = true;
 
   constructor(private cartService: ShoppingCartService) { }
 
   async ngOnInit() {
-
-    this.cartService.getCart().subscribe(result => {
-      let cart:any = result;
+    (await this.cartService.getCart()).subscribe(result => {
+      let cart: any = result;
       this.cartItems = cart.cartItems;
       for (let c of this.cartItems) {
         this.totalPrice += (c.count * c.product.price);
@@ -36,7 +33,7 @@ export class ShoppingCartComponent implements OnInit {
     (await this.cartService.clearCartItems()).subscribe(() => {
       localStorage.removeItem("cartId");
       // this.ngOnInit()
-    })
+    });
   }
 
 }

@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ProductService } from "../../services/product.service";
-import { Subscription } from "rxjs";
-import { Product } from "../../model/product";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ProductService } from '../../services/product.service';
+import { Subscription } from 'rxjs';
+import { Product } from '../../model/product';
 
 @Component({
-  selector: "app-admin-products",
-  templateUrl: "./admin-products.component.html",
-  styleUrls: ["./admin-products.component.css"]
+  selector: 'app-admin-products',
+  templateUrl: './admin-products.component.html',
+  styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[];

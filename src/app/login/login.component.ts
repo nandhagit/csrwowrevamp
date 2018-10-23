@@ -1,19 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Router, ActivatedRoute } from "@angular/router";
-import {
-  FormGroup,
-  AbstractControl,
-  FormBuilder,
-  Validators,
-  NgForm
-} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm;
@@ -21,7 +14,6 @@ export class LoginComponent implements OnInit {
   password;
   invalidLogin: boolean = false;
   constructor(
-    private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService
@@ -37,7 +29,7 @@ export class LoginComponent implements OnInit {
       } else {
         this.invalidLogin = true;
       }
-    })
+    });
     return false;
   }
 }

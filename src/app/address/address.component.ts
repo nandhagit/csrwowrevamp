@@ -26,11 +26,10 @@ export class AddressComponent {
   getAddress() {
     this.addressService.getAddress().subscribe(data => {
       this.addresses = data;
-      console.log(this.addresses)
-    })
+    });
   }
 
-  addressSelected(address: number){
+  addressSelected(address: number) {
     this.onAddressSelect.emit(address);
   }
 

@@ -1,12 +1,14 @@
 <div class="row">
-    <div class="col-md-4">
-        <img class="card-img-top" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png" alt="item">
-      </div>
+  <div class="col-md-4 sticky-top">
+    <img class="card-img-top" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png" alt="item">
+  </div>
   <div class="col-md-8">
     <h1>{{product.name}}</h1>
-    <p>Inspired by the intricate designs on armour, this monochromatic floral cotton block print kurta is adorned with red contrast appliqué. Let this design inspire you to channel your inner strengrh and talent like a super power and help you make the most of your day! Pair it with red bottoms and minimal accessories for the complete look. It can even be styled with denims, pants and pallazos, the choice is yours. The stylish front slit balances the high neck. Yes, it has 2 pockets too !
-      </p>
+    <p>{{product.description}}</p>
     <h4>{{product.price|currency:'INR'}}</h4>
+    <h5 class="d-inline-block card-title">Ratings and Reviews</h5>
+    <button class="btn btn-primary btn-sm float-right" [routerLink]="['/rating']">Rate this product</button>
+    <rating *ngIf="product.ratings" [rating-detail]="product.ratings"></rating>
   </div>
-  
+
 </div>
