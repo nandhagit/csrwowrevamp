@@ -1,6 +1,23 @@
-.card-footer{
-    padding: 0px;
+.card-footer {
+  padding: 0px;
 }
-.card{
-    margin-bottom: 30px;
+
+.card {
+  margin-bottom: 30px;
+}
+
+.favorite,
+.favorite_border {
+  right: 0;
+  top: 10px;
+  position: absolute;
+  color: #d8d5d5;
+}
+
+.favorite_border {
+  color: #d8d5d5;
+}
+
+.favorite {
+  color: #fa7878;
 }

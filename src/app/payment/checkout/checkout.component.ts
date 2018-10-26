@@ -44,7 +44,6 @@ export class CheckoutComponent implements OnInit {
       address: this.address,
       cart: localStorage.getItem('cartId')
     };
-    console.log(paymentPayload)
     return this.paymentservice.dopayment(paymentPayload).subscribe(
       data => {
         this.payuform.txnid = data.txnId;

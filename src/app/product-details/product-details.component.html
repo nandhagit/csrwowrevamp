@@ -1,13 +1,14 @@
 <div class="row">
   <div class="col-md-4 sticky-top">
     <img class="card-img-top" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png" alt="item">
+    <product-quantity [product]="product" [shopping-cart]="cartItems" showAdd="true"></product-quantity>
   </div>
   <div class="col-md-8">
     <h1>{{product.name}}</h1>
     <p>{{product.description}}</p>
     <h4>{{product.price|currency:'INR'}}</h4>
     <h5 class="d-inline-block card-title">Ratings and Reviews</h5>
-    <button class="btn btn-primary btn-sm float-right" [routerLink]="['/rating']">Rate this product</button>
+    <button class="btn btn-primary btn-sm float-right" (click)="open()">Rate this product</button>
     <rating *ngIf="product.ratings" [rating-detail]="product.ratings"></rating>
   </div>
 

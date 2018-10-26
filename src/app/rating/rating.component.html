@@ -8,7 +8,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-2">
-        <h5 class="card-title">{{averageRating}} <mat-icon>star</mat-icon>
+        <h5 class="card-title">{{averageRating | number:'1.1-1'}} <mat-icon>star</mat-icon>
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ratings.length}} ratings and {{reviewsCount}} reviews</h6>
       </div>
@@ -16,7 +16,7 @@
         <div class="row" *ngFor="let r of ratingDashBoard">
           <div class="col-md-2 text-right"><span>{{r.rating}} &#9733;</span></div>
           <div class="col-md-8 align-self-center">
-            <ngb-progressbar type="success" [value]="r.count" height=".5rem"></ngb-progressbar>
+            <ngb-progressbar [type]="r.color" [value]="r.count" height=".5rem"></ngb-progressbar>
           </div>
           <div class="col-md-2"><span>{{r.count}}</span></div>
         </div>
@@ -24,10 +24,12 @@
     </div>
   </div>
 </div>
-<div class="card" *ngFor="let r of ratings">
+<ng-container *ngFor="let r of ratings">
+<div class="card" *ngIf="r.review">
   <div class="card-body">
-    <h5 class="card-title"><span class="badge badge-success">{{r.rating}} &#9733;</span></h5>
+    <h5 class="card-title"><span class="badge badge-success">{{r.rating}} &#9733;</span>{{r.title}}</h5>
     <p>{{r.review}}</p>
     <h6 class="card-subtitle mb-2 text-muted">UserId: {{r.user}}</h6>
   </div>
 </div>
+</ng-container>

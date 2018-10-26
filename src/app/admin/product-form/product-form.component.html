@@ -56,7 +56,7 @@
         <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.errors?.url">Not a valid Url.</div>
         <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.errors?.required">Image url is required.</div>
       </div>
-      <button class="btn btn-primary">Save</button>
+      <button [disabled]="f.invalid" type="submit" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
     </form>
   </div>

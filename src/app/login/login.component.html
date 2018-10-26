@@ -1,24 +1,27 @@
-<div class="row justify-content-center">
-  <div class="col-md-4  shadow pb-5 pt-5">
-    <form #loginForm="ngForm" (ngSubmit)="signin(loginForm.value)">
-      <h4>Please sign in</h4>
-      <div *ngIf="invalidLogin" class="alert alert-danger">
-        Invalid username or password
-      </div>
-      <div class="form-group">
-        <input #email="ngModel" [(ngModel)]="username" id="username" name="username" type="text" class="form-control"
-          required placeholder="email">
-        <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">User Name is required.</div>
-      </div>
-      <div class="form-group">
-        <input #pwd="ngModel" [(ngModel)]="password" id="password" name="password" type="password" class="form-control"
-          required placeholder="password">
-        <div class="alert alert-danger" *ngIf="pwd.touched && pwd.errors?.required">Password is required.</div>
-      </div>
-      <button class="btn btn-primary btn-block">Login</button>
-    </form>
-  </div>
-  <div class="col-md-3 bg-success shadow pb-5 pt-5">
+<div class="modal-body">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <form #loginForm="ngForm" (ngSubmit)="signin(loginForm.value)">
+        <h4>Please sign in</h4>
+        <div *ngIf="invalidLogin" class="alert alert-danger">
+          Invalid username or password
+        </div>
+        <div class="form-group">
+          <input #username="ngModel" ngModel id="username" name="username" type="text" class="form-control" required
+            placeholder="phone number">
+          <div class="alert alert-danger" *ngIf="username.touched && username.invalid">User Name is required.</div>
+        </div>
+        <div class="form-group">
+          <input #password="ngModel" ngModel id="password" name="password" type="password" class="form-control"
+            required placeholder="password">
+          <div class="alert alert-danger" *ngIf="password.touched && password.invalid">Password is required.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <button (click)="activeModal.dismiss('Cancelled login')" type="button" class="btn btn-secondary btn-block">Cancel</button>
+      </form>
+    </div>
+    <!--<div class="col-md-3 bg-success shadow pb-5 pt-5">
 
+  </div>-->
   </div>
 </div>

@@ -1,33 +1,52 @@
-<form #signupForm="ngForm" (ngSubmit)="signin(signupForm.value)">
-    <div class="form-row justify-content-center">
-        <div class="form-group col-md-6">
-          <img src="https://picsum.photos/550/250" alt="">
-        </div>
-      </div>
+<form [formGroup]="form" (ngSubmit)="signin(form.value)">
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-6">
+      <img src="https://picsum.photos/550/250" alt="">
+    </div>
+  </div>
   <div class="form-row justify-content-center">
     <div class="form-group col-md-3">
-      <input #fname="ngModel" [(ngModel)]="firstname" name="firstname" type="text" class="form-control" id="firstname" placeholder="first name">
+      <input formControlName="firstname" type="text" class="form-control" id="firstname" placeholder="first name">
+      <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-danger">
+        <div *ngIf="firstname.errors.required">First name is required</div>
+      </div>
     </div>
     <div class="form-group col-md-3">
-      <input #lname="ngModel" [(ngModel)]="lastname" name="lastname" type="text" class="form-control" id="lastname"  placeholder="last name">
+      <input formControlName="lastname" type="text" class="form-control" id="lastname" placeholder="last name">
+      <div *ngIf="lastname.touched && lastname.invalid" class="alert alert-danger">
+        <div *ngIf="lastname.errors.required">Last name is required</div>
+      </div>
     </div>
   </div>
   <div class="form-row justify-content-center">
     <div class="form-group col-md-2">
-      <input #mail="ngModel" [(ngModel)]="email" name="email" type="email" class="form-control" id="email" placeholder="email address">
+      <input formControlName="email" type="email" class="form-control" id="email" placeholder="email address">
+      <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+        <div *ngIf="email.errors.required">Email is required</div>
+        <div *ngIf="email.errors.email">Email is invalid</div>
+      </div>
     </div>
     <div class="form-group col-md-4">
-      <input #phonenum="ngModel" [(ngModel)]="phone" name="phone" type="email" class="form-control" id="phone" placeholder="10-digit phone number">
+      <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="10-digit phone number">
+      <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">
+        <div *ngIf="phone.errors.required">Phone number is required</div>
+        <div *ngIf="phone.errors.pattern">Phone number is invalid</div>
+      </div>
     </div>
   </div>
   <div class="form-row  justify-content-center">
     <div class="form-group col-md-3">
       <div class="input-group">
-        <input [(ngModel)]="dob" ngbDatepicker id="dob" #dateofbirth="ngbDatepicker" name="dob" class="form-control" placeholder="DOB (yyyy-mm-dd)">
+        <input ngbDatepicker id="dob" #dateofbirth="ngbDatepicker" formControlName="dob" class="form-control"
+          placeholder="DOB (yyyy-mm-dd)">
+
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" (click)="dateofbirth.toggle()" type="button">
             <mat-icon>calendar_today</mat-icon>
           </button>
+        </div>
+        <div *ngIf="dob.touched && dob.invalid" class="alert alert-danger">
+          <div *ngIf="dob.errors.required">Date of Birth is required</div>
         </div>
       </div>
     </div>
@@ -37,18 +56,33 @@
 
   <div class="form-row justify-content-center">
     <div class="form-group col-md-3">
-      <input #pwd="ngModel" [(ngModel)]="password" name="password" type="password" class="form-control" id="password" placeholder="password">
+      <input formControlName="password" type="password" class="form-control" id="password" placeholder="password">
+      <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">Length of a password should be 8</div>
+      </div>
     </div>
     <div class="form-group col-md-3">
-      <input type="password" class="form-control" id="repassword" placeholder="re-enter password">
+      <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="re-enter password">
+      <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="alert alert-danger">
+        <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+      </div>
     </div>
+
   </div>
   <div class="form-row justify-content-center">
+    <div *ngIf="confirmPassword.touched && password.touched && form.errors" class="alert alert-danger col-md-6">
+      <div *ngIf="form.errors.passwordMismatch">Password is not matching</div>
+    </div>
+  </div>
+
+  <div class="form-row justify-content-center">
     <div class="form-group col-md-3">
-      <button type="submit" class="btn btn-success btn-block">Sign in</button>
+      <button [disabled]="form.invalid" type="submit" class="btn btn-success btn-block">Sign in</button>
     </div>
     <div class="form-group col-md-3">
       <button type="reset" class="btn btn-secondary btn-block">Reset</button>
     </div>
   </div>
+  {{form.value | json}}
 </form>

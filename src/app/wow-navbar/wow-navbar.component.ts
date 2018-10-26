@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { AuthService } from '../services/auth.service';
 import { CategoryService } from '../services/category.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'wow-header',
@@ -15,7 +17,9 @@ export class WowNavbarComponent implements OnInit {
   categories;
 
   constructor(private categoryService: CategoryService,
-    private cartService: ShoppingCartService, private authService: AuthService) {
+    private cartService: ShoppingCartService,
+    private modalservice: NgbModal,
+    private authService: AuthService) {
     this.categoryService.getCategories().subscribe(result => {
       this.categories = result;
     });
@@ -35,6 +39,10 @@ export class WowNavbarComponent implements OnInit {
 
   getCartCount() {
     return localStorage.getItem('cartCount');
+  }
+
+  openLogin() {
+    this.modalservice.open(LoginComponent);
   }
 
 }

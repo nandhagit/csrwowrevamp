@@ -2,38 +2,50 @@
   <mat-icon (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="address-collapse">add_circle</mat-icon>
   Add Address
 </p>
-<form #addressForm="ngForm" (ngSubmit)="saveAddress(addressForm.value)">
+<form #f="ngForm" (ngSubmit)="saveAddress(f.value)">
   <div id="address-collapse" [ngbCollapse]="isCollapsed">
     <div class="card">
       <div class="card-body">
         <div class="form-group">
           <label for="address">Address</label>
-          <input #add="ngModel" [(ngModel)]="address" type="text" class="form-control" id="address" placeholder="house/street, building, area"
-            name="address">
+          <input #address="ngModel" name="address" ngModel type="text" class="form-control" id="address" placeholder="house/street, building, area" required>
+          <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+            <div *ngIf="address.errors.required">Address is required</div>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="city">City</label>
-            <input #cityinput="ngModel" [(ngModel)]="city" type="text" class="form-control" id="city" name="city"
-              placeholder="city">
+            <input #city="ngModel" name="city" ngModel type="text" class="form-control" id="city" placeholder="city" required>
+            <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+              City is required
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="state">State</label>
-            <select #stateinput="ngModel" [(ngModel)]="state" id="state" class="form-control" name="state">
-              <option selected>Choose...</option>
-              <option>...</option>
+            <select #state="ngModel" name="state" ngModel id="state" class="form-control">
+              <option>Karnataka</option>
+              <option>Mumbai</option>
             </select>
           </div>
           <div class="form-group col-md-3">
             <label for="pin">Pin Code</label>
-            <input #zip="ngModel" [(ngModel)]="pin" type="text" class="form-control" id="zip" name="pin" placeholder="123456">
+            <input #pin="ngModel" ngModel type="text" minlength="6" maxlength="6" class="form-control" id="pin" name="pin" placeholder="123456" required>
+            <div class="alert alert-danger" *ngIf="pin.touched && pin.invalid">
+                <div *ngIf="pin.errors.required">
+                    Zip is required
+                  </div>
+              <div *ngIf="pin.errors.minlength || pin.errors.maxlength">
+                Zip length should be 6
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-3">
-            <button type="submit" class="btn btn-success btn-block">Save</button>
+            <button [disabled]="f.invalid" type="submit" class="btn btn-success btn-block">Save</button>
           </div>
           <div class="form-group col-md-3">
             <button type="button" class="btn btn-secondary btn-block">Cancel</button>

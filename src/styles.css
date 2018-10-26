@@ -4,15 +4,31 @@
 @import "../node_modules/font-awesome/css/font-awesome.css";
 
 
-.container{
-    padding-top: 25px;
+.container {
+  padding-top: 25px;
 }
 
-.progress-spinner{
-    margin: 0 auto;
+.progress-spinner {
+  margin: 0 auto;
 }
 
 mat-icon {
-    vertical-align: top;
-    padding-right: 40px;
+  vertical-align: top;
+  padding-right: 40px;
+  color: #28a745;
+}
+
+.card,
+.form-control,
+.btn,
+.badge,
+.modal-content,
+.dropdown-menu,
+.alert,
+a.list-group-item.list-group-item-action {
+  border-radius: unset;
+}
+
+.form-control.ng-invalid.ng-touched{
+  border: 2px solid red;
 }

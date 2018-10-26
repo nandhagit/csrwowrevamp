@@ -1,31 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+
   loginForm;
-  username;
-  password;
   invalidLogin: boolean = false;
+  //@Input() returnUrl;
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthService
+   // private route: ActivatedRoute,
+    private authService: AuthService,
+    public activeModal: NgbActiveModal
   ) { }
-
-  ngOnInit() { }
 
   signin(form: NgForm) {
     this.authService.authenticate(form).subscribe(response => {
       if (response) {
-        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-        this.router.navigate([returnUrl || '/']);
+        this.activeModal.close('Login Successful');
+        //let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        //this.router.navigate([this.returnUrl || '/']);
       } else {
         this.invalidLogin = true;
       }

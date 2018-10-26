@@ -1,3 +1,29 @@
-<p>
-  rating-form works!
-</p>
+<div class="modal-body">
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <h5>Rate our product</h5>
+    <div *ngIf="ratingError" class="alert alert-danger">
+        Error while saving rating!
+      </div>
+    <ngb-rating [(rate)]="currentRate" max="5">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+    <hr>
+    <h5>Review our product</h5>
+    <form #ratingForm="ngForm" (ngSubmit)="saveRating(ratingForm.value)">
+      <div class="form-group">
+        <label for="reviewtitle">Review title</label>
+        <input name="title" [(ngModel)]="title" type="email" class="form-control" id="reviewtitle" placeholder="title">
+      </div>
+      <div class="form-group">
+        <label for="reviewdesc">Description</label>
+        <textarea name="review" [(ngModel)]="review"class="form-control" id="reviewdesc" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      <button (click)="activeModal.dismiss('Cancelled rating')" type="button" class="btn btn-secondary btn-block">Cancel</button>
+    </form>
+  </div>
+</div>
+</div>

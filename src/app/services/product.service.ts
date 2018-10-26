@@ -17,8 +17,8 @@ export class ProductService {
     return this.http.get("/wow/getproducts");
   }
 
-  getProduct(id): Observable<any> {
-    return this.http.get("/products/" + id);
+  getProduct(productId): Observable<any> {
+    return this.http.get("/wow/product/", {params: {id: productId}});
   }
 
   updateProduct(id, product): Observable<any> {

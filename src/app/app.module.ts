@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { WowNavbarComponent } from './wow-navbar/wow-navbar.component';
@@ -38,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PriceFilterComponent } from './price-filter/price-filter.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -50,6 +51,8 @@ import { MembersComponent } from './members/members.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { RatingFormComponent } from './rating-form/rating-form.component';
+
+import { RatingService } from './services/rating.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -91,6 +94,7 @@ export function tokenGetter() {
     NgbModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     CustomFormsModule,
     MatTabsModule,
     MatIconModule,
@@ -98,11 +102,12 @@ export function tokenGetter() {
     MatProgressBarModule,
     MatSliderModule,
     Ng5SliderModule,
+    MatSnackBarModule,
     MatProgressSpinnerModule,
     RouterModule.forRoot(
       [
         {
-          path: ' ',
+          path: '',
           component: HomeComponent
         },
         {
@@ -208,7 +213,8 @@ export function tokenGetter() {
     ShoppingCartService,
     AuthService,
     AuthGuard,
-    AdminAuthGuard
+    AdminAuthGuard,
+    RatingService
   ],
   bootstrap: [AppComponent]
 })
