@@ -11,15 +11,19 @@ export class OrderViewComponent {
 
   order: any = [];
 
+  errorFetching = false;
+
   constructor(private route: ActivatedRoute,
     orderService: OrderService) {
     let orderId = route.snapshot.paramMap.get('order');
-    orderService.getOrderDetail(orderId).subscribe(data => {
-      this.order = data;
-      console.log(this.order)
-    }, error => {
-      console.log(error)
-    })
+    orderService.getOrderDetail(orderId).subscribe(
+      data => {
+        this.order = data;
+        this.errorFetching = false;
+      },
+      error => {
+        this.errorFetching = true;
+      });
 
   }
 

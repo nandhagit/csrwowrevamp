@@ -19,22 +19,28 @@ export class WowNavbarComponent implements OnInit {
   constructor(private categoryService: CategoryService,
     private cartService: ShoppingCartService,
     private modalservice: NgbModal,
-    private authService: AuthService) {
+    public authService: AuthService) {
     this.categoryService.getCategories().subscribe(result => {
       this.categories = result;
     });
   }
 
   async ngOnInit() {
-    (await this.cartService.getCart()).subscribe(result => {
-      let cart: any = result;
-      let cartItems = cart.cartItems;
-      let totalCount = 0;
-      for (let c of cartItems) {
-        totalCount += c.count;
+    (await this.cartService.getCart()).subscribe(
+      result => {
+        const cart: any = result;
+        if (!cart) {
+          localStorage.removeItem('cartId');
+          return;
+        }
+        const cartItems = cart.cartItems;
+        let totalCount = 0;
+        for (let c of cartItems) {
+          totalCount += c.count;
+        }
+        localStorage.setItem('cartCount', totalCount.toString());
       }
-      localStorage.setItem('cartCount', totalCount.toString());
-    });
+    );
   }
 
   getCartCount() {

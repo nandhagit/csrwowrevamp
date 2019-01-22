@@ -5,13 +5,18 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  images = [1, 2, 3].map(() => `https://picsum.photos/1500/250?random&t=${Math.random()}`);
+  image = [1, 2, 3].map(() => `https://picsum.photos/1500/250?random&t=${Math.random()}`);
+  images = [1, 2, 3].map(() => `https://picsum.photos/370/250?random&t=${Math.random()}`);
 
-  constructor() { }
+  // slides = [
+  //   {img: `https://picsum.photos/250/250?random&t=${Math.random()}`},
+  //   {img: `https://picsum.photos/250/250?random&t=${Math.random()}`},
+  //   {img: `https://picsum.photos/250/250?random&t=${Math.random()}`},
+  //   {img: `https://picsum.photos/250/250?random&t=${Math.random()}`}
+  // ];
 
-  ngOnInit() {
-  }
+  // slideConfig = {'slidesToShow': 2, 'slidesToScroll': 1};
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -12,6 +12,7 @@ export class ProductQuantityComponent {
   @Input('product') product;
   @Input('showAdd') showAdd;
   @Input('shopping-cart') cartItems;
+  @Output() quantityChange = new EventEmitter();
   count;
 
   constructor(private cartService: ShoppingCartService, private snackBar: MatSnackBar) {
@@ -26,6 +27,7 @@ export class ProductQuantityComponent {
         duration: 1000,
       });
     });
+    this.quantityChange.emit();
   }
 
   async removeFromCart() {
@@ -37,6 +39,7 @@ export class ProductQuantityComponent {
         duration: 1000,
       });
     });
+    this.quantityChange.emit();
   }
 
   getQuantity() {

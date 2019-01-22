@@ -11,13 +11,10 @@ import { take } from 'rxjs/operators';
 })
 export class ProductFormComponent implements OnInit {
 
-  categories;
-
+  categories = [];
   product = {};
-
   id;
-
-  subtypes;
+  subtypes = [];
 
   constructor(private categoryService: CategoryService,
     private productService: ProductService,

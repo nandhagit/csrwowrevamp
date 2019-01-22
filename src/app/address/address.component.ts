@@ -10,7 +10,7 @@ export class AddressComponent {
 
   @Output() onAddressSelect = new EventEmitter<number>();
   addresses: any = [];
-
+  isCollapsed = false;
   constructor(private addressService: AddressService) {
     this.getAddress();
   }

@@ -1,21 +1,16 @@
-<div class="card">
-  <div class="card-body">
-    <mat-icon>mood</mat-icon>{{order.user?.firstname}}
-  </div>
+<h2>Order details: {{ order.id }}</h2>
+<div *ngIf="errorFetching" class="alert alert-danger">
+  Error fetching the details. Please try again later
 </div>
 <div class="card">
   <div class="card-body">
-    <mat-icon>email</mat-icon>{{order.user?.email}}
-  </div>
-</div>
-<div class="card">
-  <div class="card-body">
-    <mat-icon>phone</mat-icon>{{order.user?.phone}}
-  </div>
-</div>
-<div class="card">
-  <div class="card-body">
-    <mat-icon>home</mat-icon>{{order.address?.address}}
+    <div><mat-icon>mood</mat-icon>{{order.user?.firstname}}</div>
+    <div><mat-icon>email</mat-icon>{{order.user?.email}}</div>
+    <div><mat-icon>phone</mat-icon>{{order.user?.phone}}</div>
+    <div><mat-icon>home</mat-icon>{{order.address?.address}}
+      <div>{{order.address?.city + ' - ' + order.address?.pin}}</div>
+      <div>{{order.address?.state}}</div>
+    </div>
   </div>
 </div>
 <table class="table">

@@ -22,11 +22,11 @@ export class ProductService {
   }
 
   updateProduct(id, product): Observable<any> {
-    return this.http.put("/products/" + id, product);
+    return this.http.put("/wow/products/" + id, product);
   }
 
   deleteProduct(id): Observable<any> {
-    return this.http.delete("/products/" + id);
+    return this.http.delete("/wow/products/" + id);
   }
 
   minMaxPrice(): Observable<any> {

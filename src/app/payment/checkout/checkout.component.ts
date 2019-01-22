@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from '../payment.service';
+import { PaymentService } from '../../services/payment.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
@@ -27,14 +27,18 @@ export class CheckoutComponent implements OnInit {
   async ngOnInit() {
     this.userService.getCurrentUser().subscribe(data => {
       this.user = data;
+      this.payuform.firstname = this.user.firstname;
+      this.payuform.email = this.user.email;
+      this.payuform.phone = this.user.phone;
     });
     (await this.cartService.getCart()).subscribe(result => {
-      let cart:any = result;
+      let cart: any = result;
       this.cartItems = cart.cartItems;
     });
   }
 
   confirmPayment() {
+
     const paymentPayload = {
       email: this.user.email,
       name: this.user.firstname,
@@ -52,6 +56,8 @@ export class CheckoutComponent implements OnInit {
         this.payuform.key = data.key;
         this.payuform.hash = data.hash;
         this.payuform.txnid = data.txnId;
+        this.payuform.amount = this.total;
+        this.payuform.productinfo = 'Info';
         this.disablePaymentButton = false;
         this.payuform.sp = "payu_paisa";
       }, error => {

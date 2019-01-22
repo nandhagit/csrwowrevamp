@@ -17,7 +17,7 @@ export class ShoppingCartComponent implements OnInit {
   async ngOnInit() {
     (await this.cartService.getCart()).subscribe(result => {
       let cart: any = result;
-      this.cartItems = cart.cartItems;
+      this.cartItems = cart.cartItems.sort(this.productNameCompare);
       for (let c of this.cartItems) {
         this.totalPrice += (c.count * c.product.price);
       }
@@ -31,9 +31,34 @@ export class ShoppingCartComponent implements OnInit {
 
   async clearCart() {
     (await this.cartService.clearCartItems()).subscribe(() => {
-      localStorage.removeItem("cartId");
-      // this.ngOnInit()
+      localStorage.removeItem('cartId');
+      localStorage.setItem('cartCount', '0');
+      this.cartItems = [];
+      this.totalPrice = 0;
     });
+  }
+
+  async onQuantityChange() {
+    (await this.cartService.getCart()).subscribe(result => {
+      let cart: any = result;
+      this.cartItems = cart.cartItems.sort(this.productNameCompare);
+      this.totalPrice = 0;
+      for (let c of this.cartItems) {
+        this.totalPrice += (c.count * c.product.price);
+      }
+    });
+  }
+
+  productNameCompare(a, b) {
+    const nameA = a.product.name.toUpperCase();
+    const nameB = b.product.name.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
   }
 
 }

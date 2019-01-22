@@ -53,6 +53,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { RatingFormComponent } from './rating-form/rating-form.component';
 
 import { RatingService } from './services/rating.service';
+import { SlickModule } from 'ngx-slick';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -104,6 +105,7 @@ export function tokenGetter() {
     Ng5SliderModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    SlickModule.forRoot(),
     RouterModule.forRoot(
       [
         {

@@ -1,23 +1,83 @@
 <ngb-carousel *ngIf="images">
   <ng-template ngbSlide>
-    <img [src]="images[0]" alt="Random first slide">
+    <img [src]="image[0]" alt="Random first slide">
     <div class="carousel-caption">
       <h3>First slide label</h3>
-      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      <p>Custom label</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <img [src]="images[1]" alt="Random second slide">
+    <img [src]="image[1]" alt="Random second slide">
     <div class="carousel-caption">
       <h3>Second slide label</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Custom label</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <img [src]="images[2]" alt="Random third slide">
+    <img [src]="image[2]" alt="Random third slide">
     <div class="carousel-caption">
       <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      <p>Custom label</p>
     </div>
   </ng-template>
 </ngb-carousel>
+<ngb-carousel *ngIf="images" class="slick-carousel">
+    <ng-template ngbSlide>
+      <img [src]="images[0]" alt="Random first slide">
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Custom label</p>
+      </div>
+      <img [src]="images[2]" alt="Random first slide">
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Custom label</p>
+      </div>
+      <img [src]="images[1]" alt="Random first slide">
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Custom label</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[1]" alt="Random second slide">
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Custom label</p>
+      </div>
+      <img [src]="images[0]" alt="Random second slide">
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Custom label</p>
+      </div>
+      <img [src]="images[2]" alt="Random second slide">
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Custom label</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[2]" alt="Random third slide">
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Custom label</p>
+      </div>
+      <img [src]="images[1]" alt="Random third slide">
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Custom label</p>
+      </div>
+      <img [src]="images[0]" alt="Random third slide">
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Custom label</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+<!-- <ngx-slick class="carousel slick" #slickModal="slick-modal" [config]="slideConfig">
+  <div class="card">
+      <div ngxSlickItem class="slide" *ngFor="let slide of slides">
+          <img src="{{ slide.img }}" alt="" width="100%">
+    </div>
+  </div>
+</ngx-slick> -->

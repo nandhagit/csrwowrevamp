@@ -8,7 +8,7 @@ import { Product } from '../../model/product';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit, OnDestroy {
+export class AdminProductsComponent implements OnDestroy {
   products: Product[];
   filteredProducts: Product[];
   subscription: Subscription;
@@ -22,8 +22,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
   }
-
-  ngOnInit() { }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

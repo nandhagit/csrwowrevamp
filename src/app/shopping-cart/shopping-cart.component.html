@@ -1,21 +1,16 @@
 <h1>Shopping Cart</h1>
 <ng-container *ngIf="cartItems">
-  <p>You have {{getCartCount()}} items in your cart!</p>
+  <p>
+    You have {{getCartCount()}} items in your cart!
+    <button *ngIf="cartItems.length" (click)="clearCart()" class="btn btn-link">Clear Shopping Cart</button>
+  </p>
   <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th></th>
-        <th>Product</th>
-        <th class="text-center" style="width: 230px">Quantity</th>
-        <th class="text-right" style="width: 200px">Price</th>
-      </tr>
-    </thead>
     <tbody>
       <tr *ngFor="let c of cartItems">
-        <td><div class="thumbnail" [style.backgroundImage]="'url(https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png)'" ></div></td>
-        <td>{{c.product.name}}</td>
-        <td><product-quantity [product]="c.product" [shopping-cart]="cartItems"></product-quantity></td>
-        <td class="text-right">{{(c.product.price * c.count)|currency:'INR'}}</td>
+        <td class="align-middle"><div class="thumbnail" [style.backgroundImage]="'url(https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png)'" ></div></td>
+        <td class="align-middle">{{c.product.name}}</td>
+        <td class="align-middle"><product-quantity (quantityChange)="onQuantityChange()"  [product]="c.product" [shopping-cart]="cartItems"></product-quantity></td>
+        <td class="text-right align-middle">{{(c.product.price * c.count)|currency:'INR'}}</td>
       </tr>
     </tbody>
     <tfoot>
@@ -28,7 +23,7 @@
     </tfoot>
   </table>  
   <a *ngIf="cartItems.length" class="btn btn-primary btn-sm" routerLink="/checkout">Checkout</a>
-  <button *ngIf="cartItems.length" (click)="clearCart()" class="btn btn-danger btn-sm">Clear Shopping Cart</button>
+  
 </ng-container>
 <mat-progress-spinner *ngIf="loading" class="progress-spinner" color="warn" mode="indeterminate" diameter="60">
 </mat-progress-spinner>

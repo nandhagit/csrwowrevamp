@@ -14,7 +14,7 @@ export class AdminAuthGuard implements CanActivate {
     let user = this.authService.currentUser;
     if(user && user.scopes.includes('ADMIN'))
       return true;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/wow/home']);
     return false;
   }
 }
