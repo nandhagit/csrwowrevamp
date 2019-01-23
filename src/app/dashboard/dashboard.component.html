@@ -51,14 +51,12 @@
   </div>
   <div class="row justify-content-around mb-1">
     <div class="col-md-6">
-      <label>Progress 1</label>
-      <mat-progress-bar mode="determinate" [value]="val"></mat-progress-bar>
-      <label>Progress 2</label>
-      <mat-progress-bar mode="determinate" [value]="val"></mat-progress-bar>
-      <label>Progress 3</label>
-      <mat-progress-bar mode="determinate" [value]="val"></mat-progress-bar>
-      <label>Progress 4</label>
-      <mat-progress-bar mode="determinate" [value]="val" color="green"></mat-progress-bar>
+      <label>Orders</label>
+      <mat-progress-bar mode="determinate" value="20"></mat-progress-bar>
+      <label>Users</label>
+      <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+      <label>Items</label>
+      <mat-progress-bar mode="determinate" value="30"></mat-progress-bar>
     </div>
     <div class="col-md-4">
       <canvas #canvas>{{ myChart }}</canvas>

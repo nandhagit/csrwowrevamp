@@ -1,6 +1,6 @@
 <div *ngIf="product.name" class="card">
     <!-- <mat-icon [ngClass]="favoriteIcon" (click)="changeFav(favoriteIcon)">{{favoriteIcon}}</mat-icon> -->
-  <a [routerLink]="['/details', product.id]"><img class="card-img-top" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png"
+  <a [routerLink]="['/details', product.id]"><img class="card-img-top" [src]="product.imageURL"
       alt="item"></a>
   <div class="card-body">
     <h5 class="card-title">{{ product.name }}</h5>

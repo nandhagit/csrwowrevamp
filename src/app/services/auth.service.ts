@@ -19,7 +19,7 @@ export class AuthService {
 
   authenticate(credentials): Observable<any> {
     let cartId = localStorage.getItem('cartId');
-    return this.http.post('/auth', credentials).pipe(map(response => {
+    return this.http.post('/wow/auth', credentials).pipe(map(response => {
       let result: any = response;
       if (result && result.token) {
         localStorage.setItem('token', result.token);
