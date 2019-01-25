@@ -52,21 +52,22 @@ export class CheckoutComponent implements OnInit {
   }
   confirmPayment(e: Event) {
     let options = {
-      "key": "rzp_test_yJuvKJouFP0Z3t",
-      "amount": "2000",
-      "name": "Merchant Name",
-      "description": "Purchase Description",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/WEUG_Logo_Sample_1.svg/2000px-WEUG_Logo_Sample_1.svg.png",
-      "handler": this.handle,
-      "prefill": {
-        "name": "Gaurav Kumar",
-        "email": "test@test.com"
+      'key': 'rzp_test_yJuvKJouFP0Z3t',
+      'amount': '2000',
+      'name': 'Women of Waze',
+      'description': 'Purchase Description',
+      'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/WEUG_Logo_Sample_1.svg/2000px-WEUG_Logo_Sample_1.svg.png',
+      'handler': this.handle,
+      'prefill': {
+        'name': this.user.firstname,
+        'email': this.user.email,
+        'phone': this.user.phone
       },
-      "notes": {
-        "address": "Hello World"
+      'notes': {
+        'address': 'Hello World'
       },
-      "theme": {
-        "color": "#28a745"
+      'theme': {
+        'color': '#28a745'
       }
     };
 
@@ -95,7 +96,7 @@ export class CheckoutComponent implements OnInit {
     //     this.payuform.amount = this.total;
     //     this.payuform.productinfo = 'Info';
     //     this.disablePaymentButton = false;
-    //     this.payuform.sp = "payu_paisa";
+    //     this.payuform.sp = 'payu_paisa';
     //   }, error => {
     //     console.log(error);
     //   });

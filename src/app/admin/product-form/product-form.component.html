@@ -50,7 +50,7 @@
           <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
         </select>
         <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
-            <div *ngIf="category.errors.required">Category is required.</div>
+          <div *ngIf="category.errors.required">Category is required.</div>
         </div>
       </div>
       <div class="form-group">
@@ -59,16 +59,22 @@
           <option *ngFor="let s of subtypes" [value]="s.id">{{s.subType}}</option>
         </select>
         <div class="alert alert-danger" *ngIf="type.touched && type.invalid">
-            <div *ngIf="type.errors.required">Sub-Category is required.</div>
+          <div *ngIf="type.errors.required">Sub-Category is required.</div>
         </div>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="imgUrl">Image Url</label>
-        <input #imgUrl="ngModel" ngModel id="imgUrl" name="imgUrl" type="text" class="form-control" required url>
+         <input #imgUrl="ngModel" ngModel id="imgUrl" name="imgUrl" type="file" class="form-control" required url>
         <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.invalid">
             <div *ngIf="imgUrl.errors.url">Not a valid Url.</div>
             <div *ngIf="imgUrl.errors.required">Image url is required.</div>
-        </div>
+        </div> 
+        
+      </div> -->
+      <div class="form-group">
+        <label for="imgUrl">Image Url</label>
+        <input type="file" id="imgUrl" (change)="onFileChanged($event)" class="form-control-file">
+        <button class="btn btn-primary" (click)="onUpload()" type="button">Upload!</button>
       </div>
       <button [disabled]="f.invalid" type="submit" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
