@@ -12,4 +12,8 @@ export class PaymentService {
   dopayment(paymentPayload: any): Observable<any> {
     return this.http.post<any>('/payment/payment-details', paymentPayload);
   }
+
+  sendpaymentid(id: any): Observable<any> {
+    return this.http.get('/payment/payment-response', {params: {payid: id}})
+  }
 }
