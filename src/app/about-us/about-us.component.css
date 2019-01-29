@@ -176,3 +176,7 @@ h2::after {
     width: 250px;
     border-radius: 50%;
 }
+
+.media-body {
+    text-align: -webkit-center;
+}

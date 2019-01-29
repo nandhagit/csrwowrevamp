@@ -51,8 +51,8 @@
     <div class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""
-          />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+            alt="" />
           <!-- <div class="file btn btn-lg btn-primary">
             Change Photo
             <input type="file" name="file" />
@@ -64,13 +64,17 @@
           <h5>
             {{user.firstname}} {{user.lastname}}
           </h5>
-          <!-- <button type="submit" class="btn btn-success" name="edit-profile">Edit Profile</button> -->
+          <button *ngIf="!editable" (click)="editable = !editable" type="button" class="btn btn-primary btn-sm">Edit Profile</button>
+          <button *ngIf="editable" (click)="saveUserChanges()" type="submit" class="btn btn-success btn-sm">Save Changes</button>
+          <button *ngIf="editable" (click)="editable = !editable" type="button" class="btn btn-secondary btn-sm">Discard</button>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Orders</a>
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                aria-selected="false">Orders</a>
             </li>
           </ul>
         </div>
@@ -98,7 +102,9 @@
                 <label>Email</label>
               </div>
               <div class="col-md-6">
-                <p>{{user.email}}</p>
+                <input [(ngModel)]="email" *ngIf="editable" id="email" name="email" type="text">
+                <p *ngIf="!editable">{{user.email}}
+                </p>
               </div>
             </div>
             <div class="row">
@@ -106,7 +112,9 @@
                 <label>Phone</label>
               </div>
               <div class="col-md-6">
-                <p>{{user.phone}}</p>
+                <input [(ngModel)]="phone"  *ngIf="editable" id="phone" name="phone" type="text">
+                <p *ngIf="!editable">{{user.phone}}
+                </p>
               </div>
             </div>
             <div class="row">
@@ -114,7 +122,8 @@
                 <label>Total Orders</label>
               </div>
               <div class="col-md-6">
-                <p>{{orders.length}}</p>
+                <p>{{orders.length}}
+                </p>
               </div>
             </div>
           </div>

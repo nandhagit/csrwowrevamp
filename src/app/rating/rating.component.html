@@ -1,10 +1,7 @@
-
-<div class="card" *ngIf="ratings.length==0">
-    <div class="card-body">
-      <h5>No reviews for this product</h5>
-    </div>
-  </div>
-<div class="card"  *ngIf="ratings.length>0">
+<div *ngIf="ratings.length==0">
+  <h5>No reviews for this product</h5>
+</div>
+<div class="card" *ngIf="ratings.length>0">
   <div class="card-body">
     <div class="row">
       <div class="col-md-2">
@@ -25,11 +22,11 @@
   </div>
 </div>
 <ng-container *ngFor="let r of ratings">
-<div class="card" *ngIf="r.review">
-  <div class="card-body">
-    <h5 class="card-title"><span class="badge badge-success">{{r.rating}} &#9733;</span>{{r.title}}</h5>
-    <p>{{r.review}}</p>
-    <h6 class="card-subtitle mb-2 text-muted">UserId: {{r.user}}</h6>
+  <div class="card" *ngIf="r.review">
+    <div class="card-body">
+      <h5 class="card-title"><span class="badge badge-success">{{r.rating}} &#9733;</span>{{r.title}}</h5>
+      <p>{{r.review}}</p>
+      <h6 class="card-subtitle mb-2 text-muted">UserId: {{r.user}}</h6>
+    </div>
   </div>
-</div>
 </ng-container>
