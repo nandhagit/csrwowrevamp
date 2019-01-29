@@ -41,17 +41,24 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  save(item) {
+  save(item: any) {
+    let imageURL = 'http://localhost:8080/static/' + this.selectedFile.name;
     if (this.id) {
+      this.product.imageURL = imageURL;
       this.productService.updateProduct(this.id, this.product).subscribe(data => {
-
+        this.router.navigate(['/admin/products']);
+      },error=>{
+        
       });
     } else {
+      item.imageURL = imageURL;
       this.productService.saveProduct(item).subscribe(data => {
+        this.router.navigate(['/admin/products']);
       }, error => {
+
       });
     }
-    this.router.navigate(['/admin/products']);
+    
   }
 
   delete() {

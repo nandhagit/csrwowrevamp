@@ -1,4 +1,4 @@
-<h2>Order details: {{ order.id }}</h2>
+<!-- <h2>Order details: {{ order.id }}</h2>
 <div *ngIf="errorFetching" class="alert alert-danger">
   Error fetching the details. Please try again later
 </div>
@@ -28,4 +28,48 @@
     <td>{{c.count}}</td>
   </tr>
 </tbody>
-</table>
+</table> -->
+
+<div class="card shopping-cart">
+  <div class="card-header bg-dark text-light">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    Order Detail
+    <div class="clearfix"></div>
+  </div>
+  <div class="card-body">
+    <div *ngFor="let c of order.cart?.cartItems">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-2 text-center">
+            <a [routerLink]="['/details', c.product.id]">
+              <img class="img-responsive" [src]="c.product.imageURL" alt="prewiew" width="120" height="80">
+            </a>
+        </div>
+        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+          <h4 class="product-name">
+            <strong>{{c.product.name}}</strong>
+          </h4>
+          <h4>
+            <small>Product description</small>
+          </h4>
+        </div>
+        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+          <div class="col-3 col-sm-3 col-md-6 text-md-right">
+            <h6>
+              <strong>{{c.product.price}}
+                <span class="text-muted">x</span>
+                {{c.count}}
+              </strong>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="pull-right">
+      <div class="pull-right" style="margin: 5px">
+        Total price:
+        <b>{{order.amount/100 | currency:'INR'}}</b>
+      </div>
+    </div>
+  </div>
+</div>

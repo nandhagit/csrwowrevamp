@@ -11,7 +11,7 @@ export class ShoppingCartService {
   constructor(private http: HttpClient) { }
 
   private create() {
-    return this.http.get('/wow/createCart').toPromise();
+    return this.http.post('/wow/api/cart', {}).toPromise();
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -26,7 +26,7 @@ export class ShoppingCartService {
 
   async getCart() {
     const cartId = await this.getOrCreateCartId();
-    return this.http.get('/wow/getcart', { params: { cart: cartId } });
+    return this.http.get('/wow/api/cart', { params: { cart: cartId } });
   }
 
   async addToCart(product: Product): Promise<Observable<any>> {
@@ -42,16 +42,16 @@ export class ShoppingCartService {
   }
 
   private getItem(productId: number, cartId: string) {
-    return this.http.post('/wow/addtocart', { cart: cartId, product: productId });
+    return this.http.post('/wow/api/cart-item', { cart: cartId, product: productId });
   }
 
   private removeItem(productId: number, cartId: string) {
-    return this.http.post('/wow/removefromcart', { cart: cartId, product: productId });
+    return this.http.post('/wow/api/remove/cart-item', { cart: cartId, product: productId });
   }
 
   async clearCartItems() {
     const cartId = await this.getOrCreateCartId();
-    return this.http.get('/wow/clearCart', { params: { cart: cartId } });
+    return this.http.get('/wow/api/clear-cart', { params: { cart: cartId } });
   }
 
 }

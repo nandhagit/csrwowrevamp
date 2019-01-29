@@ -29,14 +29,14 @@ export class ShoppingCartComponent implements OnInit {
     return localStorage.getItem('cartCount');
   }
 
-  async clearCart() {
-    (await this.cartService.clearCartItems()).subscribe(() => {
-      localStorage.removeItem('cartId');
-      localStorage.setItem('cartCount', '0');
-      this.cartItems = [];
-      this.totalPrice = 0;
-    });
-  }
+  // async clearCart() {
+  //   (await this.cartService.clearCartItems()).subscribe(() => {
+  //     localStorage.removeItem('cartId');
+  //     localStorage.setItem('cartCount', '0');
+  //     this.cartItems = [];
+  //     this.totalPrice = 0;
+  //   });
+  // }
 
   async onQuantityChange() {
     (await this.cartService.getCart()).subscribe(result => {

@@ -3,6 +3,7 @@ import { PaymentService } from '../../services/payment.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { Router } from '@angular/router';
 
 
 declare var Razorpay: any;
@@ -26,7 +27,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private paymentservice: PaymentService,
     private userService: UserService,
     private authService: AuthService,
-    private cartService: ShoppingCartService) {
+    private cartService: ShoppingCartService,
+    private router: Router) {
 
   }
 
@@ -43,11 +45,14 @@ export class CheckoutComponent implements OnInit {
     });
   }
   handle = (response) => {
-    console.log(response.razorpay_payment_id);
-    this.paymentservice.sendpaymentid(response.razorpay_payment_id).subscribe(data => {
+    this.paymentservice.capturePayment(response.razorpay_payment_id).subscribe(data => {
+      console.log("Success");
       console.log(data);
+      localStorage.removeItem('cartId');
+      localStorage.setItem("cartCount", "0");
+      this.router.navigate(['/ordersuccess', data.orderid]);
     }, error => {
-      console.error(error);
+      console.log("Failure");
     });
   }
   confirmPayment(e: Event) {
@@ -55,8 +60,8 @@ export class CheckoutComponent implements OnInit {
       'key': 'rzp_test_yJuvKJouFP0Z3t',
       'amount': '2000',
       'name': 'Women of Waze',
-      'description': 'Purchase Description',
-      'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/WEUG_Logo_Sample_1.svg/2000px-WEUG_Logo_Sample_1.svg.png',
+      'description': 'Order',
+      'image': '/assets/logo.png',
       'handler': this.handle,
       'prefill': {
         'name': this.user.firstname,
@@ -64,7 +69,8 @@ export class CheckoutComponent implements OnInit {
         'phone': this.user.phone
       },
       'notes': {
-        'address': 'Hello World'
+        'address': this.address,
+        'cart': localStorage.getItem('cartId')
       },
       'theme': {
         'color': '#28a745'

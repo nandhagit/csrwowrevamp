@@ -26,8 +26,9 @@ export class ProductQuantityComponent {
       this.snackBar.open('Added to your cart', '', {
         duration: 1000,
       });
+      this.quantityChange.emit();
     });
-    this.quantityChange.emit();
+    
   }
 
   async removeFromCart() {
@@ -38,8 +39,9 @@ export class ProductQuantityComponent {
       this.snackBar.open('Removed from your cart', '', {
         duration: 1000,
       });
+      this.quantityChange.emit();
     });
-    this.quantityChange.emit();
+    //this.quantityChange.emit();
   }
 
   getQuantity() {

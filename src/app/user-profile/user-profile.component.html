@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
     <nav class="col-md-3 d-none d-md-block sidebar">
       <div class="sidebar-sticky text-center pt-4">
@@ -37,12 +37,123 @@
           <a class="float-right"><mat-icon>edit</mat-icon></a>
         </div>
       </div>
-      <!-- <div class="card">
+      <div class="card">
         <div class="card-body">
           <mat-icon>location_on</mat-icon>ksjdbib, aksjbdfui gasvd, asijdbiaushfd
           <a class="float-right"><mat-icon>edit</mat-icon></a>
         </div>
-      </div> -->
+      </div>
     </main>
   </div>
+</div> -->
+<div class="container emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""
+          />
+          <!-- <div class="file btn btn-lg btn-primary">
+            Change Photo
+            <input type="file" name="file" />
+          </div> -->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            {{user.firstname}} {{user.lastname}}
+          </h5>
+          <!-- <button type="submit" class="btn btn-success" name="edit-profile">Edit Profile</button> -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Orders</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.firstname}} {{user.lastname}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.email}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Phone</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{user.phone}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Total Orders</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{orders.length}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="card shopping-cart">
+              <div class="card-header bg-dark text-light">
+                <!-- <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
+                My Orders
+                <div class="clearfix"></div>
+              </div>
+              <div class="card-body">
+                <table class="table table-hover">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>Order Id</th>
+                      <th>Transaction Id</th>
+                      <th>Payment Date</th>
+                      <th>Payment Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let o of orders">
+                      <td>{{o.id}}</td>
+                      <td>{{o.transactionId}}</td>
+                      <td>{{o.paymentDate | date: 'medium'}}</td>
+                      <td>{{o.paymentStatus}}</td>
+                      <td>
+                        <a [routerLink]="['/vieworder', o.id]">View</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

@@ -1,5 +1,4 @@
-<div class="modal-body">
-  <div class="row justify-content-center">
+<!--<div class="row justify-content-center">
     <div class="col-md-10">
       <form #loginForm="ngForm" (ngSubmit)="signin(loginForm.value)">
         <h4>Please sign in</h4>
@@ -20,8 +19,161 @@
         <button (click)="activeModal.dismiss('Cancelled login')" type="button" class="btn btn-secondary btn-block">Cancel</button>
       </form>
     </div>
-    <!--<div class="col-md-3 bg-success shadow pb-5 pt-5">
+    <div class="col-md-3 bg-success shadow pb-5 pt-5">
 
+  </div>
   </div>-->
+<div id="loginbox" style="margin-top:15px;margin-bottom:15px;" class="mainbox col-md-12 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Sign In</div>
+      <div style="float:right; font-size: 80%; position: relative; top:-10px">
+        <a href="#">Forgot password?</a>
+      </div>
+    </div>
+    <div style="padding-top:30px" class="card-body">
+      <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+      <form #loginForm="ngForm" (ngSubmit)="signin(loginForm.value)">
+        <div *ngIf="invalidLogin" class="alert alert-danger">
+          Invalid username or password
+        </div>
+        <div class="form-group">
+          <input #username="ngModel" ngModel id="username" name="username" type="text" class="form-control" required placeholder="phone number">
+          <div class="alert alert-danger" *ngIf="username.touched && username.invalid">User Name is required.</div>
+        </div>
+        <div class="form-group">
+          <input #password="ngModel" ngModel id="password" name="password" type="password" class="form-control" required placeholder="password">
+          <div class="alert alert-danger" *ngIf="password.touched && password.invalid">Password is required.</div>
+        </div>
+        <div class="input-group">
+          <div class="checkbox">
+            <label>
+              <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+            </label>
+          </div>
+        </div>
+        <div style="margin-top:10px" class="form-group">
+          <!-- Button -->
+          <div class="controls">
+            <button type="submit" id="btn-login" class="btn btn-primary">Login </button>
+            <!-- <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="control">
+            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+              Don't have an account!
+              <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                Sign Up Here
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="signupbox" style="display:none; margin-top:15px; margin-bottom: 15px" class="mainbox col-md-12 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Sign Up</div>
+      <div style="float:right; font-size: 85%; position: relative; top:-10px">
+        <a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a>
+      </div>
+    </div>
+    <div class="card-body">
+      <form class="form-horizontal" [formGroup]="form" (ngSubmit)="signup(form.value)">
+
+        <!-- <div id="signupalert" style="display:none" class="alert alert-danger">
+                    <p>Error:</p>
+                    <span></span>
+                </div> -->
+
+        <div class="form-row justify-content-center">
+          <div class="form-group col-md-8">
+            <input formControlName="firstname" type="text" class="form-control" id="firstname" placeholder="first name">
+            <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-danger">
+              <div *ngIf="firstname.errors.required">First name is required</div>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <input formControlName="lastname" type="text" class="form-control" id="lastname" placeholder="last name">
+            <div *ngIf="lastname.touched && lastname.invalid" class="alert alert-danger">
+              <div *ngIf="lastname.errors.required">Last name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row justify-content-center">
+          <div class="form-group col-md-12">
+            <input formControlName="email" type="email" class="form-control" id="email" placeholder="email address">
+            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email">Email is invalid</div>
+              <div *ngIf="email.errors.shouldBeUnique">Email is already registered</div>
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+            <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="10-digit phone number">
+            <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">
+              <div *ngIf="phone.errors.required">Phone number is required</div>
+              <div *ngIf="phone.errors.pattern">Phone number is invalid</div>
+              <div *ngIf="phone.errors.shouldBeUnique">Phone number is already registered</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row  justify-content-center">
+          <div class="form-group col-md-12">
+            <div class="input-group">
+              <input ngbDatepicker id="dob" #dateofbirth="ngbDatepicker" formControlName="dob" class="form-control" placeholder="DOB (yyyy-mm-dd)">
+
+              <div class="input-group-append date-picker-icon">
+                <button class="btn btn-outline-secondary" (click)="dateofbirth.toggle()" type="button">
+                  <mat-icon>calendar_today</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="dob.touched && dob.invalid" class="alert alert-danger">
+                <div *ngIf="dob.errors.required">Date of Birth is required</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row justify-content-center">
+          <div class="form-group col-md-12">
+            <input formControlName="signinpassword" type="password" class="form-control" id="signinpassword" placeholder="password">
+            <div *ngIf="signinpassword.touched && signinpassword.invalid" class="alert alert-danger">
+              <div *ngIf="signinpassword.errors.required">Password is required</div>
+              <div *ngIf="signinpassword.errors.minlength">Length of a password should be 8</div>
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+            <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="re-enter password">
+            <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="alert alert-danger">
+              <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+            </div>
+            <div *ngIf="confirmPassword.touched && signinpassword.touched && form.errors?.passwordMismatch" class="alert alert-danger">
+              <div>Password is not matching</div>
+            </div>
+          </div>
+
+        </div>
+        <!--  <div class="form-row justify-content-center">
+           <div class="form-group col-md-3">
+            <button [disabled]="form.invalid" type="submit" class="btn btn-success btn-block">Sign in</button>
+          </div>
+          <div class="form-group col-md-3">
+            <button type="reset" class="btn btn-secondary btn-block">Reset</button>
+          </div> 
+        </div>-->
+        <div *ngIf="form.errors?.errorSaving" class="alert alert-danger">
+          <div>Error during registration. Please try again later</div>
+        </div>
+        <div style="border-top: 1px solid #999; padding-top:20px" class="form-group">
+          <button [disabled]="form.invalid" type="submit" id="btn-fbsignup" class="btn btn-primary">
+            <i class="icon-facebook"></i>   Sign Up</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<ngb-carousel *ngIf="images">
+<!-- <ngb-carousel *ngIf="images">
   <ng-template ngbSlide>
     <img [src]="image[0]" alt="Random first slide">
     <div class="carousel-caption">
@@ -74,10 +74,48 @@
       </div>
     </ng-template>
   </ngb-carousel>
-<!-- <ngx-slick class="carousel slick" #slickModal="slick-modal" [config]="slideConfig">
+<ngx-slick class="carousel slick" #slickModal="slick-modal" [config]="slideConfig">
   <div class="card">
       <div ngxSlickItem class="slide" *ngFor="let slide of slides">
           <img src="{{ slide.img }}" alt="" width="100%">
     </div>
   </div>
 </ngx-slick> -->
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Carousel indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+      <!-- Wrapper for carousel items -->
+      <div class="carousel-inner">
+        <div class="item carousel-item active">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="media">
+                <div class="media-body">
+                  <img src="https://picsum.photos/1500/250?random&t=12" alt="Random second slide">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item carousel-item">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="media">
+                <div class="media-body">
+                  <img src="https://picsum.photos/1500/250?random&t=12" alt="Random second slide">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

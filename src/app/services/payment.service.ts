@@ -9,11 +9,11 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  dopayment(paymentPayload: any): Observable<any> {
-    return this.http.post<any>('/payment/payment-details', paymentPayload);
-  }
+  // dopayment(paymentPayload: any): Observable<any> {
+  //   return this.http.post<any>('/payment/payment-details', paymentPayload);
+  // }
 
-  sendpaymentid(id: any): Observable<any> {
-    return this.http.get('/payment/payment-response', {params: {payid: id}})
+  capturePayment(id: any): Observable<any> {
+    return this.http.get('/wow/api/capture-payment', {params: {payid: id}})
   }
 }

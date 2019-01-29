@@ -54,6 +54,7 @@ import { RatingFormComponent } from './rating-form/rating-form.component';
 
 import { RatingService } from './services/rating.service';
 import { SlickModule } from 'ngx-slick';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -87,7 +88,8 @@ export function tokenGetter() {
     UserProfileComponent,
     AddressComponent,
     OrderViewComponent,
-    RatingFormComponent
+    RatingFormComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -163,17 +165,24 @@ export function tokenGetter() {
           component: ProductDetailsComponent
         },
         {
-          path: 'blog',
-          component: BlogComponent
+          path: 'ordersuccess/:orderid',
+          component: OrderSuccessComponent
         },
-        {
-          path: 'members',
-          component: MembersComponent
-        },
-        {
-          path: 'dashboard',
-          component: DashboardComponent
-        },
+
+
+        // ,
+        // {
+        //   path: 'blog',
+        //   component: BlogComponent
+        // },
+        // {
+        //   path: 'members',
+        //   component: MembersComponent
+        // },
+        // {
+        //   path: 'dashboard',
+        //   component: DashboardComponent
+        // },
         {
           path: 'aboutus',
           component: AboutUsComponent
@@ -197,6 +206,10 @@ export function tokenGetter() {
         {
           path: 'rating',
           component: RatingFormComponent
+        },
+        {
+          path: 'ourteam',
+          component: MembersComponent
         }
       ],
       { useHash: true }
