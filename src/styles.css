@@ -11,13 +11,20 @@
 .progress-spinner {
   margin: 0 auto;
 }
-
-mat-icon {
+.navbar {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+.navbar mat-icon {
   vertical-align: top;
   padding-right: 40px;
-  color: #28a745;
+  color: #fff;
 }
-
+.card-header{background-color: #007bff!important;color:#fff;}
+.card-header a{color:#fff;}
+.dropdown-menu.show {
+  background-color: #4ca2ff;
+  margin-top: 7px;
+}
 .card,
 .form-control,
 .btn,
@@ -29,6 +36,11 @@ a.list-group-item.list-group-item-action {
   border-radius: unset;
 }
 
-.form-control.ng-invalid.ng-touched{
-  border: 2px solid red;
+.form-control.ng-invalid.ng-touched{border: 2px solid red}
+
+/*Notification styles*/
+.alert {
+  padding: 0.3rem 1rem;
+  margin-bottom: 0;
+  font-size: 14px;
 }

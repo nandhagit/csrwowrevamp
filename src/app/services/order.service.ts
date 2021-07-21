@@ -10,14 +10,14 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   getAllOrders(): Observable<any> {
-    return this.http.get("/wow/admin/orders");
+    return this.http.get("/wow/api/admin/orders");
   }
 
   getMyOrders(): Observable<any> {
-    return this.http.get("/wow/orders");
+    return this.http.get("/wow/api/orders");
   }
 
   getOrderDetail(orderid: string): any {
-    return this.http.get("/wow/orderdetail", {params:{orderId: orderid}});
+    return this.http.get("/wow/api/orderdetail", {params:{orderId: orderid}});
   }
 }

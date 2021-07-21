@@ -1,4 +1,4 @@
-<h2>Payment Form</h2>
+<!-- <h2>Payment Form</h2>
 <div class="row">
   <div class="col-md-6">
     <form ngNoForm action="https://sandboxsecure.payu.in/_payment" name="payuform" method="POST">
@@ -31,6 +31,19 @@
       <button *ngIf="disablePaymentButton" type="button" class="btn btn-default" (click)="confirmPayment($event)">Confirm</button>
       <button *ngIf="!disablePaymentButton" type="submit" class="btn btn-danger">Submit</button>
     </form>
+  </div>
+  <div class="col-md-6">
+    <shopping-cart-summary [cartitems]="cartItems"></shopping-cart-summary>
+  </div>
+</div> -->
+
+
+
+<h2>Payment Form</h2>
+<div class="row">
+  <div class="col-md-6">
+    <address (onAddressSelect)="onSelectAddress($event)"></address>
+    <button *ngIf="disablePaymentButton" type="button" class="btn btn-default" (click)="confirmPayment($event)">Confirm</button>
   </div>
   <div class="col-md-6">
     <shopping-cart-summary [cartitems]="cartItems"></shopping-cart-summary>

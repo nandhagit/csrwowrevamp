@@ -9,10 +9,10 @@ export class AddressService {
   constructor(private http: HttpClient) { }
 
   saveAddress(address: any) {
-    return this.http.post('/wow/saveaddress', address);
+    return this.http.post('/wow/api/address', address);
   }
 
   getAddress() {
-     return this.http.get('/wow/getaddress');
+     return this.http.get('/wow/api/address');
   }
 }

@@ -3,6 +3,7 @@ import { PaymentService } from '../../services/payment.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { Router } from '@angular/router';
 
 
 declare var Razorpay: any;
@@ -26,7 +27,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private paymentservice: PaymentService,
     private userService: UserService,
     private authService: AuthService,
-    private cartService: ShoppingCartService) {
+    private cartService: ShoppingCartService,
+    private router: Router) {
 
   }
 
@@ -43,30 +45,35 @@ export class CheckoutComponent implements OnInit {
     });
   }
   handle = (response) => {
-    console.log(response.razorpay_payment_id);
-    this.paymentservice.sendpaymentid(response.razorpay_payment_id).subscribe(data => {
+    this.paymentservice.capturePayment(response.razorpay_payment_id).subscribe(data => {
+      console.log("Success");
       console.log(data);
+      localStorage.removeItem('cartId');
+      localStorage.setItem("cartCount", "0");
+      this.router.navigate(['/ordersuccess', data.orderid]);
     }, error => {
-      console.error(error);
+      console.log("Failure");
     });
   }
   confirmPayment(e: Event) {
     let options = {
-      "key": "rzp_test_yJuvKJouFP0Z3t",
-      "amount": "2000",
-      "name": "Merchant Name",
-      "description": "Purchase Description",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/WEUG_Logo_Sample_1.svg/2000px-WEUG_Logo_Sample_1.svg.png",
-      "handler": this.handle,
-      "prefill": {
-        "name": "Gaurav Kumar",
-        "email": "test@test.com"
+      'key': 'rzp_test_yJuvKJouFP0Z3t',
+      'amount': '2000',
+      'name': 'Women of Waze',
+      'description': 'Order',
+      'image': '/assets/logo.png',
+      'handler': this.handle,
+      'prefill': {
+        'name': this.user.firstname,
+        'email': this.user.email,
+        'phone': this.user.phone
       },
-      "notes": {
-        "address": "Hello World"
+      'notes': {
+        'address': this.address,
+        'cart': localStorage.getItem('cartId')
       },
-      "theme": {
-        "color": "#28a745"
+      'theme': {
+        'color': '#28a745'
       }
     };
 
@@ -95,7 +102,7 @@ export class CheckoutComponent implements OnInit {
     //     this.payuform.amount = this.total;
     //     this.payuform.productinfo = 'Info';
     //     this.disablePaymentButton = false;
-    //     this.payuform.sp = "payu_paisa";
+    //     this.payuform.sp = 'payu_paisa';
     //   }, error => {
     //     console.log(error);
     //   });

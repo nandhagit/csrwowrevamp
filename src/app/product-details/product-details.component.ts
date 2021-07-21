@@ -16,7 +16,9 @@ export class ProductDetailsComponent implements OnInit {
   product: any = [];
   id: string;
   cartItems: any = [];
-
+  public mainImageUrl;
+  public image = [1, 2, 3].map(() => `https://picsum.photos/450/450?random&t=${Math.random()}`);
+  
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private modalService: NgbModal,
@@ -33,12 +35,20 @@ export class ProductDetailsComponent implements OnInit {
     if (this.id) {
       this.productService.getProduct(this.id).pipe(take(1)).subscribe(data => {
         this.product = data;
+        this.mainImageUrl = this.product.imageURL;
       });
     }
     (await this.cartService.getCart()).subscribe(result => {
       let cart: any = result;
       this.cartItems = cart.cartItems;
     });
+  }
+
+  onImageChange(event){
+    let url = this.mainImageUrl;
+    this.mainImageUrl = event.target.src;
+    event.target.src = url;
+
   }
 
 }

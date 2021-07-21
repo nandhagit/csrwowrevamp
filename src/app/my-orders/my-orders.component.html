@@ -1,4 +1,4 @@
-<h2>My Orders</h2>
+<!-- <h2>My Orders</h2>
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
@@ -18,4 +18,36 @@
       <td><a  [routerLink]="['/vieworder', o.id]">View</a></td>
     </tr>
   </tbody>
-</table>
+</table> -->
+<div class="card shopping-cart">
+  <div class="card-header bg-dark text-light">
+    <!-- <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
+    My Orders
+    <div class="clearfix"></div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Order Id</th>
+          <th>Transaction Id</th>
+          <th>Payment Date</th>
+          <th>Payment Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of orders">
+          <td>{{o.id}}</td>
+          <td>{{o.transactionId}}</td>
+          <td>{{o.paymentDate | date:'mediumDate'}}</td>
+          <td>{{o.paymentStatus}}</td>
+          <td>
+            <a [routerLink]="['/vieworder', o.id]">View</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+  </div>
+</div>

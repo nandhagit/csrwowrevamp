@@ -1,4 +1,4 @@
-<h2>Orders</h2>
+<!-- <h2>Orders</h2>
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
@@ -15,15 +15,57 @@
   <tbody>
 
     <tr *ngFor="let o of orders">
-      <td><a [routerLink]="['/user', o.user.id]">{{o.user.id}}</a></td>
+      <td>
+        <a [routerLink]="['/user', o.user.id]">{{o.user.id}}</a>
+      </td>
       <td>{{o.id}}</td>
       <td>{{o.status}}</td>
       <td>{{o.transactionId}}</td>
       <td>{{o.paymentDate | date: 'medium'}}</td>
       <td>{{o.paymentStatus}}</td>
-      <td><a [routerLink]="['/vieworder', o.id]">View</a></td>
+      <td>
+        <a [routerLink]="['/vieworder', o.id]">View</a>
+      </td>
     </tr>
   </tbody>
-</table>
+</table> -->
+<div class="card shopping-cart">
+  <div class="card-header bg-dark text-light">
+    <!-- <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
+    Manage Orders
+    <div class="clearfix"></div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Customer Id</th>
+          <th>Order Id</th>
+          <th>Order Status</th>
+          <th>Transaction Id</th>
+          <th>Payment Date</th>
+          <th>Payment Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of orders">
+          <td>
+            <a [routerLink]="['/user', o.user.id]">{{o.user.id}}</a>
+          </td>
+          <td>{{o.id}}</td>
+          <td>{{o.status}}</td>
+          <td>{{o.transactionId}}</td>
+          <td>{{o.paymentDate | date: 'medium'}}</td>
+          <td>{{o.paymentStatus}}</td>
+          <td>
+            <a [routerLink]="['/vieworder', o.id]">View</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+  </div>
+</div>
 <mat-progress-spinner *ngIf="loading" class="progress-spinner" color="warn" mode="indeterminate" diameter="60">
 </mat-progress-spinner>

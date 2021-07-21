@@ -7,3 +7,11 @@ mat-grid-list.mat-grid-list{
 .mat-dialog-content{
     max-height: none;
 }
+
+.date-picker-icon button {padding: 0 10px;margin: 0;}
+
+.date-picker-icon button .mat-icon {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+}

@@ -15,6 +15,7 @@ export class ProductFormComponent implements OnInit {
   product: any = {};
   id;
   subtypes: any = [];
+  selectedFile: File;
 
   constructor(private categoryService: CategoryService,
     private productService: ProductService,
@@ -40,17 +41,24 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  save(item) {
+  save(item: any) {
+    let imageURL = 'http://localhost:8080/static/' + this.selectedFile.name;
     if (this.id) {
+      this.product.imageURL = imageURL;
       this.productService.updateProduct(this.id, this.product).subscribe(data => {
-
+        this.router.navigate(['/admin/products']);
+      },error=>{
+        
       });
     } else {
+      item.imageURL = imageURL;
       this.productService.saveProduct(item).subscribe(data => {
+        this.router.navigate(['/admin/products']);
       }, error => {
+
       });
     }
-    this.router.navigate(['/admin/products']);
+    
   }
 
   delete() {
@@ -59,5 +67,17 @@ export class ProductFormComponent implements OnInit {
 
     });
     this.router.navigate(['/admin/products']);
+  }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload() {
+    const data = new FormData();
+    data.append('file', this.selectedFile);
+    this.productService.uploadProduct(data).subscribe(response => {
+      console.log(response);
+    });
   }
 }

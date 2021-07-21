@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-4 sticky-top">
     <img class="card-img-top" src="https://cdn12.picryl.com/photo/2016/12/31/bag-shopping-weave-0fa6ea-1024.png" alt="item">
     <product-quantity [product]="product" [shopping-cart]="cartItems" showAdd="true"></product-quantity>
@@ -12,4 +12,85 @@
     <rating *ngIf="product.ratings" [rating-detail]="product.ratings"></rating>
   </div>
 
+</div> -->
+
+
+
+<div class="card">
+  <div class="row">
+    <aside class="col-sm-5 border-right">
+      <article class="gallery-wrap">
+        <div class="img-big-wrap">
+          <div>
+            <img [src]="mainImageUrl">
+          </div>
+        </div>
+        <div class="img-small-wrap">
+          <div *ngFor="let i of image" class="item-gallery">
+            <img [src]="i" (click)="onImageChange($event)">
+          </div>
+        </div>
+      </article>
+    </aside>
+    <aside class="col-sm-7">
+      <article class="card-body p-5">
+      <h3 class="title mb-3">{{product.name}}</h3>
+        <p class="price-detail-wrap">
+          <span class="price h3 text-primary">
+            <span class="currency">{{product.price | currency: 'INR'}}</span>
+          </span>
+        </p>
+        <dl class="item-property">
+          <dt>Description</dt>
+          <dd>
+            <p>{{product.description}}</p>
+          </dd>
+        </dl>
+        <dl class="param param-feature">
+          <dt>Product Code#</dt>
+          <dd>12345611</dd>
+        </dl>
+        <dl class="param param-feature">
+          <dt>Color</dt>
+          <dd>Black and white</dd>
+        </dl>
+        <hr>
+        <product-quantity [product]="product" [shopping-cart]="cartItems" showAdd="true"></product-quantity>
+      </article>
+    </aside>
+  </div>
+</div>
+
+
+
+<div class="emp-profile">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="profile-head">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About Member</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tab-content profile-tab" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <rating *ngIf="product.ratings" [rating-detail]="product.ratings"></rating>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

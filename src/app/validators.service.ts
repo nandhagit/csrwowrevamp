@@ -9,11 +9,11 @@ export class ValidatorsService {
   constructor(private http: HttpClient) { }
 
   checkPhoneNumber(phoneNumber) {
-    return this.http.get('/wow/checkPhoneNumber', {params: {phonenumber: phoneNumber}});
+    return this.http.get('/wow/api/validate-ph', {params: {phonenumber: phoneNumber}});
   }
 
   checkEmail(email) {
-    return this.http.get('/wow/checkEmail', {params: {email: email}});
+    return this.http.get('/wow/api/validate-email', {params: {email: email}});
   }
 
 }

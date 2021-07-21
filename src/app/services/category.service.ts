@@ -10,11 +10,11 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<any> {
-    return this.http.get("/wow/getcategory")
+    return this.http.get("/wow/api/category")
   }
 
   getSubTypes(category): Observable<any> {
-    return this.http.get("/wow/getSubFilters", {params:{category: category}});
+    return this.http.get("/wow/api/sub-filters", {params:{category: category}});
   }
 
 }

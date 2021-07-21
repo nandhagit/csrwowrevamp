@@ -9,10 +9,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUser(userid: string) {
-    return this.http.get('/wow/getuser', {params: {userid: userid}});
+    return this.http.get('/wow/api/user', {params: {userid: userid}});
   }
 
   getCurrentUser() {
-    return this.http.get('/wow/getcurrentuser');
+    return this.http.get('/wow/api/current-user');
   }
 }
